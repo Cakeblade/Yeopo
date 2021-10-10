@@ -29,26 +29,32 @@ class Company
 		this.numPer = 0; // 중대원들 총원 수
 		this.numDorm = 1; // 생활관 index
 		this.dorm = new Array(_mans); // 생활관 배열, 인원을 넣어 초기화해야한다, head들의 배열.
-		this.nDorm = new Array(1); // 생활관별 인원수를 저장하는 배열
+		this.nDorm = new Array(); // 생활관별 인원수를 저장하는 배열
+		this.nDorm.push(parseInt(1));
 	}
 	
 	// getter
 	getName() {return this.name;}
 	getNumPer() {return this.NumPer;}
 	getNumDorm() {return this.numDorm;}
-	getNumNDorm(_index) {return this.nDorm[_index - 1];}
+	getDorm() {return this.dorm;}
+	getDorm(_index) {return this.dorm[_index];}
+	getNDorm() {return this.nDorm;}
+	getNDorm(_index) {return this.nDorm[_index - 1];}
 	
 	// setter
-	setNumDorm(_numDorm) {this.numDorm = _numDorm;} 
+	setNumDorm(_numDorm) {this.numDorm = _numDorm;}
 	setNumPer(_NumPer) {this.NumPer = _NumPer;}
 	
 	// function related to NumPer
 	calcNumPer()
 	{
-		for(let i; i < this.numDorm; i++)
+		let cnt = 0;
+		for(let i = 0; i < this.numDorm; i++)
 		{
-			
+			cnt = cnt + this.getNDorm(i);
 		}
+		return cnt;
 	}
 	
 	// function related to Dorm list
@@ -56,24 +62,24 @@ class Company
 	{
 		this.dorm.push(_mans);
 		this.nDorm.push(1);
-		this.setNumDorm(this.getNumDorm()+1);
+		this.setNumDorm(this.getNumDorm() + 1);
 	}
 	
 	insertLast(_mans, _iDorm) //인원, 생활관 / 매개변수는 1, 2 이렇게 받을 예정이기 때문에 밑에서 -1을 해준다. (아니면 간부 목록을 0으로 넣고 1부터 index를 시작해도 될 듯?)
 	{
-		let curNode = this.dorm[_iDorm-1];
+		let curNode = this.getDorm(_iDorm - 1);
 		while(curNode.getNext())
 		{
 			curNode = curNode.getNext();
 		}
 		curNode.next = _mans;
-		this.nDorm[_iDorm - 1] = this.nDorm[_iDorm - 1] + 1;
+		this.nDorm[_iDorm - 1] = this.getDorm(_iDorm - 1) + 1;
 	}
 	
 	insertAt(_mans, _iDorm, _index) //인원, 생활관, 넣을 자리
 	{
 		let preNode;
-		let curNode = this.dorm[_iDorm-1];
+		let curNode = this.getDorm(_iDorm - 1);
 		let count = 0;
 		
 		if(_index - 1 > 0 && _index - 1 > this.nDorm[_iDorm-1]) //index가 인원수보다 많으면
@@ -84,9 +90,9 @@ class Company
 		
 		if(_index == 1) // 맨 앞에 넣을거면
 		{
-			_mans.setNext(this.dorm[_iDorm-1]);
+			_mans.setNext(this.getDorm(_iDorm - 1));
 			this.nDorm[_iDorm-1]++;
-			this.dorm[_iDorm-1] = _mans;
+			this.getDorm(_iDorm - 1) = _mans;
 			return;
 		}
 		
@@ -103,7 +109,7 @@ class Company
 	
 	getAt(_iDorm, _index)
 	{
-		let curNode = this.dorm[_iDorm-1];
+		let curNode = this.getDorm(_iDorm - 1);
 		let count = 0;
 		
 		while(curNode)
@@ -125,7 +131,7 @@ class Company
 	
 	printList(_iDorm) // 사실상 test용 함수 -- 나중에 이름 배열을 return하는 함수가 될듯?
 	{
-		let curNode = this.dorm[_iDorm-1];
+		let curNode = this.getDorm(_iDorm - 1);
 		while(curNode?.getNext() != null) // ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 		{
 			document.writeln(curNode.getName());
@@ -138,47 +144,59 @@ class Company
 	findPersonByName(_name) // 이름으로 Person 객체를 찾는 함수 - return -> Person Node
 	{
 		let cnt = 0;
+		let arrIndex = 0;
+		var arr = new Array();
 		while(this.dorm[cnt])
 		{
-			let curNode = this.dorm[cnt];
+			let curNode = this.getDorm(cnt);
 			while(curNode?.getNext() != null) // ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 			{
 				if(curNode.getName() == _name)
 				{
-					document.writeln(curNode.getName());
+					//document.writeln(curNode.getName());
+					arr[arrIndex] = curNode;
+					arrIndex++;
 				}
 				curNode = curNode.getNext();
 			}
 			if(curNode.getName() == _name)
 			{
-				document.writeln(curNode.getName());
+				//document.writeln(curNode.getName());
+				arr[arrIndex] = curNode;
+				arrIndex++;
 			}
 			cnt++;
 		}
-		return;
+		return arr;
 	}
 	
 	findPersonByPos(_pos) // 위치로 Person 객체를 찾는 함수 - return -> Person Node
 	{
 		let cnt = 0;
+		let arrIndex = 0;
+		var arr = new Array();
 		while(this.dorm[cnt])
 		{
-			let curNode = this.dorm[cnt];
+			let curNode = this.getDorm(cnt);
 			while(curNode?.getNext() != null) // ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 			{
 				if(curNode.getPos() == _pos)
 				{
-					document.writeln(curNode.getPos());
+					//document.writeln(curNode.getPos());
+					arr[arrIndex] = curNode;
+					arrIndex++;
 				}
 				curNode = curNode.getNext();
 			}
 			if(curNode.getPos() == _pos)
 			{
-				document.writeln(curNode.getPos());
+				//document.writeln(curNode.getPos());
+				arr[arrIndex] = curNode;
+				arrIndex++;
 			}
 			cnt++;
 		}
-		return;
+		return arr;
 	}
 }
 

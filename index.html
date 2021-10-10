@@ -6,13 +6,13 @@
     </head>
     <body>
 		<script type="text/javascript" src="./class.js"></script> <!-- 중대, 인원들을 정의하는 js -->
-		<script type="text/javascript" src="./checkpos.js"></script> <!-- 인원들의 열외 관련 함수를 정의하는 js -->
+		<script type="text/javascript" src="./check.js"></script> <!-- 인원들의 열외 관련 함수를 정의하는 js -->
 		<script type="text/javascript" src="./fio.js"></script> <!-- 파일 입출력 관련 js / 나중에 구현하자 -->
 		<script type="text/javascript"> // 주 구동 구역
 			const p1 = new Person("p1","dorm","0");
 			const p2 = new Person("p2","dorm","0");
-			const p3 = new Person("p3","dorm","0");
-			const p4 = new Person("p4","dorm","0");
+			const p3 = new Person("p2","dorm","0");
+			const p4 = new Person("p2","dorm","0");
 
 			const p5 = new Person("p5","dorm","0");
 			const p6 = new Person("p6","dorm","0");
@@ -36,10 +36,12 @@
 			
 			document.writeln("<br>");
 			
-			sig.findPersonByName("p6");
-			
-			document.writeln("<br>");
-			sig.findPersonByPos("dorm");
+			var arr = sig.findPersonByName("p2");
+			for(let i = 0; arr[i]; i++)
+			{
+				document.writeln(arr[i].getName());
+			}
+			document.writeln("<br>" + sig.calcNumPer());
 		</script>
     </body>
 </html>
