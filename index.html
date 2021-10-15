@@ -10,14 +10,14 @@
 		<script type="text/javascript" src="./fio.js"></script> <!-- 파일 입출력 관련 js / 나중에 구현하자 -->
 		<script type="text/javascript"> // 주 구동 구역
 			const p1 = new Person("p1","dorm","0");
-			const p2 = new Person("p2","dorm","0");
-			const p3 = new Person("p2","dorm","0");
-			const p4 = new Person("p2","dorm","0");
-
+			const p2 = new Person("p2","dorm","1");
+			const p3 = new Person("p3","dorm","0");
+			const p4 = new Person("p4","dorm","1");
+			
 			const p5 = new Person("p5","dorm","0");
 			const p6 = new Person("p6","dorm","0");
-			const p7 = new Person("p7","dorm","0");
-			const p8 = new Person("p6","dorm","0");
+			const p7 = new Person("p7","dorm","1");
+			const p8 = new Person("p8","dorm","0");
 			
 			const sig = new Company("SIG", p1);
 			
@@ -31,17 +31,14 @@
 			sig.insertLast(p8, 2);
 			sig.insertAt(p7, 2, 3)
 			
-			sig.printList(1);
-			sig.printList(2);
+			var arr = sig.returnList(1);
 			
-			document.writeln("<br>");
-			
-			var arr = sig.findPersonByName("p2");
-			for(let i = 0; arr[i]; i++)
+			for(let i = 0; i < 10; i++)
 			{
-				document.writeln(arr[i].getName());
+				document.write('<button name="button">' + arr[i].getName() + ' </button>');
+				document.writeln("<br>");
+				if(arr[i] = undefined) break;
 			}
-			document.writeln("<br>" + sig.calcNumPer());
 		</script>
     </body>
 </html>

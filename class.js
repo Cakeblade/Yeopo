@@ -30,7 +30,7 @@ class Company
 		this.numDorm = 1; // 생활관 index
 		this.dorm = new Array(_mans); // 생활관 배열, 인원을 넣어 초기화해야한다, head들의 배열.
 		this.nDorm = new Array(); // 생활관별 인원수를 저장하는 배열
-		this.nDorm.push(parseInt(1));
+		this.nDorm.push(parseInt('1', 10));
 	}
 	
 	// getter
@@ -49,11 +49,9 @@ class Company
 	// function related to NumPer
 	calcNumPer()
 	{
-		let cnt = 0;
-		for(let i = 0; i < this.numDorm; i++)
-		{
-			cnt = cnt + this.getNDorm(i);
-		}
+		var cnt = 0;
+		for(let i = 0; i < this.numDorm; i++) cnt = cnt + this.nDorm[i];
+		this.numPer = cnt;
 		return cnt;
 	}
 	
@@ -61,7 +59,7 @@ class Company
 	makeNewDorm(_mans) // initialize new dorm
 	{
 		this.dorm.push(_mans);
-		this.nDorm.push(1);
+		this.nDorm.push(parseInt('1', 10));
 		this.setNumDorm(this.getNumDorm() + 1);
 	}
 	
@@ -73,7 +71,7 @@ class Company
 			curNode = curNode.getNext();
 		}
 		curNode.next = _mans;
-		this.nDorm[_iDorm - 1] = this.getDorm(_iDorm - 1) + 1;
+		this.nDorm[_iDorm - 1] = this.nDorm[_iDorm - 1] + 1;
 	}
 	
 	insertAt(_mans, _iDorm, _index) //인원, 생활관, 넣을 자리
@@ -92,7 +90,7 @@ class Company
 		{
 			_mans.setNext(this.getDorm(_iDorm - 1));
 			this.nDorm[_iDorm-1]++;
-			this.getDorm(_iDorm - 1) = _mans;
+			this.dorm[_iDorm - 1] = _mans;
 			return;
 		}
 		
@@ -141,6 +139,29 @@ class Company
 		document.writeln();
 	}
 	
+	returnList(cnt) // 생활관 인원 리스트를 return?
+	{
+		let arrIndex = 0;
+		var arr = new Array();
+		while(this.dorm[cnt])
+		{
+			let curNode = this.getDorm(cnt);
+			while(curNode?.getNext() != null) // ? 안붙이면 오류난다. ㅁㄴㅇㄹ
+			{
+				//document.writeln(curNode.getName());
+				arr[arrIndex] = curNode;
+				arrIndex++;
+				curNode = curNode.getNext();
+			}
+			//document.writeln(curNode.getName());
+			arr[arrIndex] = curNode;
+			arrIndex++;
+			cnt++;
+		}
+		return arr;
+	}
+	
+	// function related to search
 	findPersonByName(_name) // 이름으로 Person 객체를 찾는 함수 - return -> Person Node
 	{
 		let cnt = 0;
@@ -191,6 +212,35 @@ class Company
 			if(curNode.getPos() == _pos)
 			{
 				//document.writeln(curNode.getPos());
+				arr[arrIndex] = curNode;
+				arrIndex++;
+			}
+			cnt++;
+		}
+		return arr;
+	}
+	
+	findPersonByType(_typ) // 타입(var 아님)으로 Person 객체를 찾는 함수 - return -> Person Node
+	{
+		let cnt = 0;
+		let arrIndex = 0;
+		var arr = new Array();
+		while(this.dorm[cnt])
+		{
+			let curNode = this.getDorm(cnt);
+			while(curNode?.getNext() != null) // ? 안붙이면 오류난다. ㅁㄴㅇㄹ
+			{
+				if(curNode.getTyp() == _typ)
+				{
+					//document.writeln(curNode.getName());
+					arr[arrIndex] = curNode;
+					arrIndex++;
+				}
+				curNode = curNode.getNext();
+			}
+			if(curNode.getTyp() == _typ)
+			{
+				//document.writeln(curNode.getName());
 				arr[arrIndex] = curNode;
 				arrIndex++;
 			}
