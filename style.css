@@ -1,0 +1,80 @@
+body {
+	color:#000!important;
+	background-color:#f1f1f1!important;
+	margin:0;
+}
+
+article,aside,details,figcaption,figure,footer,header,main,menu,nav,section {
+	display:block
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family:"Segoe UI", Arial, sans-serif;
+	font-weight:400;
+	margin:10px 0
+}
+
+h1{font-size:36px}
+h2{font-size:30px}
+h3{font-size:24px}
+h4{font-size:20px}
+h5{font-size:18px}
+h6{font-size:16px}
+
+hr {
+	border:0;
+	border-top:1px solid #eee;
+	margin:20px 0;
+}
+
+.top {
+	position:fixed;
+	width:100%;
+	z-index:1;
+	top:0;
+	color:#fff!important;
+	background-color:#000!important;
+}
+
+.right {
+	float:left;
+}
+
+
+.bar {
+	width:100%;
+	overflow:hidden;
+	display:inline-block;
+	padding:8px 16px;
+	float:left;
+	border:none;
+	outline:0;
+	text-align: center;
+}
+
+.barBlock {
+	width:100%;
+	text-align:left;
+	padding:8px 16px;
+	display:block;
+	border:none;
+	white-space:normal;
+	float:none;
+	outline:0
+}
+
+.barItem {
+	padding:8px 16px;
+	float:left;
+	width:100%;
+	border:none;
+	display:block;
+	outline:0;
+	text-align:left;
+}
+
+.bar:before, .bar:after {
+	content:"";
+	display:table;
+	clear:both;
+}
