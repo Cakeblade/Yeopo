@@ -4,14 +4,25 @@ body {
 	margin:0;
 }
 
-article,aside,details,figcaption,figure,footer,header,main,menu,nav,section {
-	display:block
-}
-
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 h1,h2,h3,h4,h5,h6 {
 	font-family:"Segoe UI", Arial, sans-serif;
 	font-weight:400;
 	margin:10px 0
+}
+
+.button {
+	border:none;
+	display:inline-block;
+	padding:8px 16px;
+	vertical-align:middle;
+	overflow:hidden;
+	text-decoration:none;
+	color:inherit;
+	background-color:inherit;
+	text-align:center;
+	cursor:pointer;
+	white-space:nowrap;
 }
 
 h1{font-size:36px}
@@ -77,4 +88,18 @@ hr {
 	content:"";
 	display:table;
 	clear:both;
+}
+
+.sidebar {
+	height:100%;
+	width:200px;
+	background-color:#fff;
+	position:fixed!important;
+	z-index:1;
+	overflow:auto;
+	color:#000!important;
+}
+
+.container {
+	padding:0.01em 16px;
 }
