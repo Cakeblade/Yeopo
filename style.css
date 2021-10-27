@@ -100,6 +100,39 @@ hr {
 	color:#000!important;
 }
 
-.container {
-	padding:0.01em 16px;
+.allhands {
+	border-collapse:collapse;
+	border-spacing:0;
+	margin:auto;
+	width:100%;
+	background-color:white;
+}
+
+.allhands td {
+	border-color:black;
+	border-style:solid;
+	border-width:1px;
+	font-size:24px;
+	overflow:hidden;
+	padding:10px 5px;
+	width:10%;
+}
+
+.print {
+	margin: 10px 10px 10px 10px;
+	float: right;
+}
+
+.company {
+	border-collapse:collapse;
+	border-spacing:0;
+	background-color:white;
+}
+
+.company td{
+	border-color:black;
+	border-style:solid;
+	border-width:1px;
+	overflow:hidden;
+	text-align:center;
 }

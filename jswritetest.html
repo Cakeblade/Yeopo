@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<!-- 일단 html에 디자인 한 다음에 index.html에 js화 시킬 테스트용 html -->
+	<head>
+		<title>직할중대 현황판</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./style.css">
+		<script type="javascript" src="main.js"></script>
+		<script>
+			function onPrint() {
+				const html = document.querySelector('html');
+				const printContents = document.querySelector(".main").innerHTML;
+				const printDiv = document.createElement("div");
+				printDiv.className = "print-div";
+				 
+				html.appendChild(printDiv);
+				printDiv.innerHTML = printContents;
+				document.body.style.display = 'none';
+				window.print();
+				document.body.style.display = 'block';
+				printDiv.style.display = 'none';
+			}
+		</script>
+	</head>
+	<body>
+	
+		<!-- Top container -->
+		<div class="bar top" style="z-index:4" font-size="18px">
+			<h3>
+				<span>XXX여단 본부 직할중대 현황판</span>
+				<span id="printClock">printClock</span>
+				<script>
+					var Target = document.getElementById("printClock");
+					function printClock()
+					{
+						var time = new Date();
+						var month = time.getMonth();
+						var date = time.getDate();
+						var hours = time.getHours();
+						var minutes = time.getMinutes();
+						var seconds = time.getSeconds();
+						if(hours < 12) {apm = "AM";}
+						else {apm = "PM";}
+						Target.innerText = `${month + 1}월 ${date}일 ` + `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+					}
+					printClock();
+					setInterval(printClock, 1000);
+				</script>
+			</h3>
+			
+		</div>
+
+		<!-- Sidebar/menu -->
+		<nav class="sidebar" style="z-index:3;width:300px;" id="mySidebar"><br>
+  			<div class="barBlock">
+   				<a href="#" class="barItem button"> 현황판</a>
+    			<a href="#" class="barItem button"> XX중대</a>
+    			<a href="#" class="barItem button"> XX중대</a>
+   				<a href="#" class="barItem button"> XX중대</a>
+    			<a href="#" class="barItem button"> XX중대</a>
+    			<a href="#" class="barItem button"> XX중대</a>
+    			<a href="#" class="barItem button"> XX중대</a><br><br>
+  			</div>
+		</nav>
+
+
+		<!-- !PAGE CONTENT! -->
+		<div class="main" id="main" style="margin-left:300px;margin-top:68px;">
+			<table class="allhands">
+				<tr>
+					<td>총원</td>
+					<td>123</td>
+					<td>열외</td>
+					<td>345</td>
+					<td>현재원</td>
+					<td>567</td>
+				</tr>
+			</table>
+			
+			<div style="width:50%; float:left">
+				<table class="company">
+					<tr>
+						<td colspan="6">XX중대</td>
+					</tr>
+					<tr>
+						<td colspan="2">총원</td>
+						<td colspan="2">열외</td>
+						<td colspan="2">현재원</td>
+					</tr>
+					<tr>
+						<td colspan="2">123</td>
+						<td colspan="2">345</td>
+						<td colspan="2">567</td>
+					</tr>
+					<tr>
+						<td colspan="2">1생활관</td>
+						<td colspan="2">2생활관</td>
+						<td colspan="2">3생활관</td>
+					</tr>
+					<tr>
+						<td>김김김</td>
+						<td>생활관</td>
+						<td>김김김</td>
+						<td>생활관</td>
+						<td>김김김</td>
+						<td>생활관</td>
+					</tr>
+				</table>
+			</div>
+			<div style="width:50%; float:left">
+				<table class="company">
+					<tr>
+						<td colspan="6">XX중대</td>
+					</tr>
+					<tr>
+						<td colspan="2">총원</td>
+						<td colspan="2">열외</td>
+						<td colspan="2">현재원</td>
+					</tr>
+					<tr>
+						<td colspan="2">123</td>
+						<td colspan="2">345</td>
+						<td colspan="2">567</td>
+					</tr>
+					<tr>
+						<td colspan="2">1생활관</td>
+						<td colspan="2">2생활관</td>
+						<td colspan="2">3생활관</td>
+					</tr>
+					<tr>
+						<td>김김김</td>
+						<td>생활관</td>
+						<td>김김김</td>
+						<td>생활관</td>
+						<td>김김김</td>
+						<td>생활관</td>
+					</tr>
+				</table>
+			</div>
+			
+			
+		</div>
+		<button class="print" onclick="onPrint()"> 인쇄하기 </button>
+		<script>
+			
+		</script>
+
+	</body>
+</html>
