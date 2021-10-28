@@ -123,10 +123,17 @@ hr {
 	float: right;
 }
 
+.bulletin {
+	width:100%;
+}
+
 .company {
 	border-collapse:collapse;
 	border-spacing:0;
 	background-color:white;
+	table-layout:fixed;
+	font-size:12px;
+	width:100%;
 }
 
 .company td{
@@ -135,4 +142,14 @@ hr {
 	border-width:1px;
 	overflow:hidden;
 	text-align:center;
+}
+
+.position {
+	width:100%;
+	resize:none;
+	border:0;
+}
+
+.position:focus {
+	outline:none;
 }

@@ -2,20 +2,23 @@
 <html>
 	<head>
 		<title>직할중대 현황판</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="./style.css">
-		<script type="javascript" src="main.js"></script>
+		<meta charset='UTF-8'>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<link rel='stylesheet' href='./style.css'>
+		<script type='javascript' src='main.js'></script>
+		<script>
+			
+		</script>
 	</head>
 	<body>
 	
 		<!-- Top container -->
-		<div class="bar top" style="z-index:4" font-size="18px">
+		<div class='bar top' style='z-index:4' font-size='18px'>
 			<h3>
 				<span>XXX여단 본부 직할중대 현황판</span>
-				<span id="printClock">printClock</span>
+				<span id='printClock'>printClock</span>
 				<script>
-					var Target = document.getElementById("printClock");
+					var Target = document.getElementById('printClock');
 					function printClock()
 					{
 						var time = new Date();
@@ -24,8 +27,8 @@
 						var hours = time.getHours();
 						var minutes = time.getMinutes();
 						var seconds = time.getSeconds();
-						if(hours < 12) {apm = "AM";}
-						else {apm = "PM";}
+						if(hours < 12) {apm = 'AM';}
+						else {apm = 'PM';}
 						Target.innerText = `${month + 1}월 ${date}일 ` + `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 					}
 					printClock();
@@ -36,27 +39,55 @@
 		</div>
 
 		<!-- Sidebar/menu -->
-		<nav class="sidebar" style="z-index:3;width:300px;" id="mySidebar"><br>
-  			<div class="barBlock">
-   				<a href="#" class="barItem button"> 현황판</a>
-    			<a href="#" class="barItem button"> XX중대</a>
-    			<a href="#" class="barItem button"> XX중대</a>
-   				<a href="#" class="barItem button"> XX중대</a>
-    			<a href="#" class="barItem button"> XX중대</a>
-    			<a href="#" class="barItem button"> XX중대</a>
-    			<a href="#" class="barItem button"> XX중대</a><br><br>
+		<nav class='sidebar' style='z-index:3;width:300px;' id='mySidebar'><br>
+  			<div class='barBlock'>
+   				<a href='jswritetest.html' class='barItem button'> 현황판</a>
+    			<a href='#' class='barItem button'> XX중대</a>
+    			<a href='#' class='barItem button'> XX중대</a>
+   				<a href='#' class='barItem button'> XX중대</a>
+    			<a href='#' class='barItem button'> XX중대</a>
+    			<a href='#' class='barItem button'> XX중대</a>
+    			<a href='#' class='barItem button'> XX중대</a><br><br>
   			</div>
 		</nav>
 
 
 		<!-- !PAGE CONTENT! -->
-		<div class="main" style="margin-left:300px;margin-top:68px;">
-			<span id="asdf">asdf</span>
+		<div class='main' id='main' style='margin-left:300px;margin-top:68px;'>
+			
 		<!-- End page content -->
 		</div>
 		
 		<script>
-			
+			var str;
+			str = "<table class='allhands'><tr><td>총원</td><td>" + "123" + "</td><td>열외</td><td>" + "345" + "</td><td>현재원</td><td>" + "567" + "</td></tr></table>";
+			str += "<table class='bulletin'>";
+			str += "<tr>";
+			for(let i = 0; i < 3; i++){
+				str += "<td>";
+				str += "<table class='company'><tr><td colspan='6'>";
+				str += "XX중대";
+				str += "</td></tr><tr>";
+				str += "<td colspan='2'>총원</td><td colspan='2'>열외</td><td colspan='2'>현재원</td></tr><tr><td colspan='2'>";
+				str += "123";
+				str += "</td><td colspan='2'>";
+				str += "345";
+				str += "</td><td colspan='2'>";
+				str += "567";
+				str += "</td></tr>";
+				str += "<tr><td colspan='2'>1생활관</td><td colspan='2'>2생활관</td><td colspan='2'>3생활관</td></tr>";
+				for(let j = 0; j < 10; j++){
+					str += "<tr><td>김김김</td><td>생활관</td><td>김김김</td><td>생활관</td><td>김김김</td><td>생활관</td></tr>";
+				}
+				str += "</table>";
+				str += "</td>";
+			}
+			str += "<td>";
+			str += "<table class='company'><tr><td colspan='6'>XX중대</td></tr><tr><td colspan='2'>총원</td><td colspan='2'>열외</td><td colspan='2'>현재원</td></tr><tr><td colspan='2'>123</td><td colspan='2'>345</td><td colspan='2'>567</td></tr><tr><td colspan='6'>1생활관</td></tr><tr><td colspan='3'>김김김</td><td colspan='3'>생활관</td></tr></table>";
+			str += "</td>";
+			str += "</tr>";
+			str += "</table>";
+			document.getElementById('main').innerHTML = str;
 		</script>
 
 	</body>
