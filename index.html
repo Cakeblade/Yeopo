@@ -3,11 +3,22 @@
 	<head>
 		<title>직할중대 현황판</title>
 		<meta charset='UTF-8'>
-		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<link rel='stylesheet' href='./style.css'>
 		<script type='javascript' src='main.js'></script>
 		<script>
-			
+			function onPrint() {
+				const html = document.querySelector('html');
+				const printContents = document.querySelector('.print').innerHTML;
+				const printDiv = document.createElement('div');
+				printDiv.className = 'print-div';
+				 
+				html.appendChild(printDiv);
+				printDiv.innerHTML = printContents;
+				document.body.style.display = 'none';
+				window.print();
+				document.body.style.display = 'block';
+				printDiv.style.display = 'none';
+			}
 		</script>
 	</head>
 	<body>
@@ -59,34 +70,143 @@
 		</div>
 		
 		<script>
+			var asdf;
 			var str;
-			str = "<table class='allhands'><tr><td>총원</td><td>" + "123" + "</td><td>열외</td><td>" + "345" + "</td><td>현재원</td><td>" + "567" + "</td></tr></table>";
+			str = "<div class='print' id='print'>";
+			str += "<table class='allhands'><tr><td>총원</td><td>" + "123" + "</td><td>열외</td><td>" + "345" + "</td><td>현재원</td><td>" + "567" + "</td></tr></table>";
+			function printCompany(_com, _flag) {
+				let numRoom;
+				let colspan;
+				
+				str += "<table class='company'>\
+								<tr>";
+				switch (_flag){ // 중대별 인원 출력
+					case 0: // 생활관이 3개
+						str += "<td colspan='6'>" + /*_com.getName()*/"XX중대" + "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='2'>총원</td>\
+								<td colspan='2'>열외</td>\
+								<td colspan='2'>현재원</td>\
+							</tr>\
+							<tr>\
+								<td colspan='2'>";
+						str += "123";
+						str += "</td><td colspan='2'>";
+						str += "345";
+						str += "</td><td colspan='2'>";
+						str += "567";
+						str += "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='2'>1생활관</td>\
+								<td colspan='2'>2생활관</td>\
+								<td colspan='2'>3생활관</td>\
+							</tr>";
+						numRoom = 3;
+						colspan = 1;
+						break;
+					case 1: // 생활관 1개
+						str += "<td colspan='6'>" + /*_com.getName()*/"XX중대" + "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='2'>총원</td>\
+								<td colspan='2'>열외</td>\
+								<td colspan='2'>현재원</td>\
+							</tr>\
+							<tr>\
+								<td colspan='2'>";
+						str += "123";
+						str += "</td><td colspan='2'>";
+						str += "345";
+						str += "</td><td colspan='2'>";
+						str += "567";
+						str += "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='6'>1생활관</td>\
+							</tr>";
+						numRoom = 1;
+						colspan = 3;
+						break;
+					case 2: // 생활관 8개
+						str += "<td colspan='16'>" + /*_com.getName()*/"XX중대" + "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='5'>총원</td>\
+								<td colspan='5'>열외</td>\
+								<td colspan='6'>현재원</td>\
+							</tr>\
+							<tr>\
+								<td colspan='5'>";
+						str += "123";
+						str += "</td><td colspan='5'>";
+						str += "345";
+						str += "</td><td colspan='6'>";
+						str += "567";
+						str += "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='2'>1생활관</td>\
+								<td colspan='2'>2생활관</td>\
+								<td colspan='2'>3생활관</td>\
+								<td colspan='2'>4생활관</td>\
+								<td colspan='2'>5생활관</td>\
+								<td colspan='2'>6생활관</td>\
+								<td colspan='2'>7생활관</td>\
+								<td colspan='2'>8생활관</td>\
+							</tr>";
+						numRoom = 8
+						colspan = 1;
+						break;
+					default:
+						str += "error!";
+						break;
+				}
+				for(let i = 0; i < 10; i++){ // 이름과 현 위치를 출력하는 반복문, 자리가 없어도 10번은 무조건 만들어지게 함.
+					str += "<tr>";
+					if(i<5){
+						for (let j = 0; j < numRoom ; j++) {
+						str += "<td colspan='"+ colspan +"'>김김김</td>\
+								<td colspan='"+ colspan +"'>생활관</td>";
+						}
+					}
+					else{
+						for (let j = 0; j < numRoom ; j++) {
+						str += "<td colspan='"+ colspan +"'></td>\
+								<td colspan='"+ colspan +"'></td>";
+						}
+					}
+					str += "</tr>";
+				}
+				str += "</table>"
+			}
 			str += "<table class='bulletin'>";
 			str += "<tr>";
-			for(let i = 0; i < 3; i++){
-				str += "<td>";
-				str += "<table class='company'><tr><td colspan='6'>";
-				str += "XX중대";
-				str += "</td></tr><tr>";
-				str += "<td colspan='2'>총원</td><td colspan='2'>열외</td><td colspan='2'>현재원</td></tr><tr><td colspan='2'>";
-				str += "123";
-				str += "</td><td colspan='2'>";
-				str += "345";
-				str += "</td><td colspan='2'>";
-				str += "567";
-				str += "</td></tr>";
-				str += "<tr><td colspan='2'>1생활관</td><td colspan='2'>2생활관</td><td colspan='2'>3생활관</td></tr>";
-				for(let j = 0; j < 10; j++){
-					str += "<tr><td>김김김</td><td>생활관</td><td>김김김</td><td>생활관</td><td>김김김</td><td>생활관</td></tr>";
-				}
-				str += "</table>";
-				str += "</td>";
-			}
 			str += "<td>";
-			str += "<table class='company'><tr><td colspan='6'>XX중대</td></tr><tr><td colspan='2'>총원</td><td colspan='2'>열외</td><td colspan='2'>현재원</td></tr><tr><td colspan='2'>123</td><td colspan='2'>345</td><td colspan='2'>567</td></tr><tr><td colspan='6'>1생활관</td></tr><tr><td colspan='3'>김김김</td><td colspan='3'>생활관</td></tr></table>";
+			printCompany(asdf, 0);
+			str += "</td>";
+			str += "<td>";
+			printCompany(asdf, 0);
+			str += "</td>";
+			str += "<td>";
+			printCompany(asdf, 0);
+			str += "</td>";
+			str += "<td>";
+			printCompany(asdf, 0);
 			str += "</td>";
 			str += "</tr>";
-			str += "</table>";
+			str += "<tr>";
+			str += "<td colspan = '3'>";
+			printCompany(asdf, 2);
+			str += "</td>";
+			str += "<td>";
+			printCompany(asdf, 1);
+			str += "</td>";
+			str += "</tr>\
+				</table>\
+			</div>";
+			str += "<button class='print' onclick='onPrint()'> 인쇄하기 </button>"
 			document.getElementById('main').innerHTML = str;
 		</script>
 
