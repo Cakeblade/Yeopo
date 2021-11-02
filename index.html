@@ -52,8 +52,8 @@
 		<!-- Sidebar/menu -->
 		<nav class='sidebar' style='z-index:3;width:300px;' id='mySidebar'><br>
   			<div class='barBlock'>
-   				<a href='jswritetest.html' class='barItem button'> 현황판</a>
-    			<a href='#' class='barItem button'> XX중대</a>
+   				<a href='index.html' class='barItem button'> 현황판</a>
+    			<a href='company1.html' class='barItem button'> XX중대</a>
     			<a href='#' class='barItem button'> XX중대</a>
    				<a href='#' class='barItem button'> XX중대</a>
     			<a href='#' class='barItem button'> XX중대</a>
@@ -81,7 +81,30 @@
 				str += "<table class='company'>\
 								<tr>";
 				switch (_flag){ // 중대별 인원 출력
-					case 0: // 생활관이 3개
+					case 1: // 생활관 1개
+						str += "<td colspan='6'>" + /*_com.getName()*/"XX중대" + "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='2'>총원</td>\
+								<td colspan='2'>열외</td>\
+								<td colspan='2'>현재원</td>\
+							</tr>\
+							<tr>\
+								<td colspan='2'>";
+						str += "123";
+						str += "</td><td colspan='2'>";
+						str += "345";
+						str += "</td><td colspan='2'>";
+						str += "567";
+						str += "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='6'>1생활관</td>\
+							</tr>";
+						numRoom = 1;
+						colspan = 3;
+						break;
+					case 3: // 생활관 3개
 						str += "<td colspan='6'>" + /*_com.getName()*/"XX중대" + "</td>\
 							</tr>\
 							<tr>\
@@ -106,30 +129,33 @@
 						numRoom = 3;
 						colspan = 1;
 						break;
-					case 1: // 생활관 1개
-						str += "<td colspan='6'>" + /*_com.getName()*/"XX중대" + "</td>\
+					case 4: // 생활관 4개
+						str += "<td colspan='8'>" + /*_com.getName()*/"XX중대" + "</td>\
 							</tr>\
 							<tr>\
-								<td colspan='2'>총원</td>\
-								<td colspan='2'>열외</td>\
+								<td colspan='3'>총원</td>\
+								<td colspan='3'>열외</td>\
 								<td colspan='2'>현재원</td>\
 							</tr>\
 							<tr>\
-								<td colspan='2'>";
+								<td colspan='3'>";
 						str += "123";
-						str += "</td><td colspan='2'>";
+						str += "</td><td colspan='3'>";
 						str += "345";
 						str += "</td><td colspan='2'>";
 						str += "567";
 						str += "</td>\
 							</tr>\
 							<tr>\
-								<td colspan='6'>1생활관</td>\
+								<td colspan='2'>1생활관</td>\
+								<td colspan='2'>2생활관</td>\
+								<td colspan='2'>3생활관</td>\
+								<td colspan='2'>4생활관</td>\
 							</tr>";
-						numRoom = 1;
-						colspan = 3;
+						numRoom = 4;
+						colspan = 1;
 						break;
-					case 2: // 생활관 8개
+					case 8: // 생활관 8개
 						str += "<td colspan='16'>" + /*_com.getName()*/"XX중대" + "</td>\
 							</tr>\
 							<tr>\
@@ -184,21 +210,21 @@
 			str += "<table class='bulletin'>";
 			str += "<tr>";
 			str += "<td>";
-			printCompany(asdf, 0);
+			printCompany(asdf, 3);
 			str += "</td>";
 			str += "<td>";
-			printCompany(asdf, 0);
+			printCompany(asdf, 3);
 			str += "</td>";
 			str += "<td>";
-			printCompany(asdf, 0);
+			printCompany(asdf, 4);
 			str += "</td>";
 			str += "<td>";
-			printCompany(asdf, 0);
+			printCompany(asdf, 1);
 			str += "</td>";
 			str += "</tr>";
 			str += "<tr>";
 			str += "<td colspan = '3'>";
-			printCompany(asdf, 2);
+			printCompany(asdf, 8);
 			str += "</td>";
 			str += "<td>";
 			printCompany(asdf, 1);
