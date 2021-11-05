@@ -6,6 +6,7 @@
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<link rel='stylesheet' href='./style.css'>
 		<script type='javascript' src='main.js'></script>
+		<script type='javascript' src='class.js'></script>
 		<script>
 			function onPrint() {
 				const html = document.querySelector('html');
@@ -55,7 +56,7 @@
   			<div class='barBlock'>
    				<a href='index.html' class='barItem button'> 현황판</a>
 				<a href='company1.html' class='barItem button'> XX중대</a>
-				<a href='#' class='barItem button'> XX중대</a>
+				<a href='company2.html' class='barItem button'> XX중대</a>
    				<a href='#' class='barItem button'> XX중대</a>
 				<a href='#' class='barItem button'> XX중대</a>
 				<a href='#' class='barItem button'> XX중대</a>
@@ -70,19 +71,28 @@
 		</div>
 		<button class='print' onclick='onPrint()'> 인쇄하기 </button>
 		<script>
-			var comClass = "XX중대";
 			var str;
+			var value;
+			var room;
+			var comClass = "XX중대";
 			var company = "sig";
+			room = 3;
 			// 중대 이름
 			str = "<div id='company_" + company + "class='singleCompany'>";
 			str += "<table class='singleCompany'><tr><td rowspan='2'>" + comClass + "</td>";
-			str += "<td class='roomname'>1생활관</td><td class='roomname'>2생활관</td><td class='roomname'>3생활관</td></tr>";
+			for(let i = 0; i <= room; i++){
+				if(i == 0) str += "<td class='roomname'>행정반</td>";
+				else str += "<td class='roomname'>" + i + "생활관</td>";
+			}
+			str += "</tr>";
 			str += "<tr>";
-			for(let i = 1; i < 4; i++){
+			for(let i = 0; i <= room; i++){
+				value = "박박박";
 				str += "<td>";
-				for(let j = 0; j < 10; j++){
+				for(let j = 0; j < 11; j++){
+					if(j > 5) value = " ";
 					str += "<div = 'button'>";
-					str += "<input type = 'button' readonly id='company_" + "sig" + "_" + i + "_" + j + "' class='company_people_sig' value='박박박'>";
+					str += "<input type='button' readonly id='company_" + "sig" + "_" + i + "_" + j + "' class='company_people_sig' value='" + value + "'>";
 					str += "</div>";
 				}
 				str += "</td>";
@@ -99,16 +109,7 @@
 						</table>\
 					</div>";
 			// 열외내용
-			str += "<div id='outdoor'>\
-						<div id='outdoor_1'>";
-			for(let i = 1; i < 4; i++){
-				str += "<input type='text' readonly id='outdoor_group_name' class='outdoor_group1'>";
-			}
-			str += "</div>\
-					<div id='outdoor1'>";
-			for(let i = 1; i < 10; i++){
-				str += "<div id='outdoor_" + + "' class='outdoor>";
-			}
+			
 			document.getElementById('main').innerHTML = str;
 		</script>
 
