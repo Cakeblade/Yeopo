@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<!-- 중대원 출력 완성 -->
+	<!-- 열외 완성 -->
 	<head>
 		<title>직할중대 현황판</title>
 		<meta charset='UTF-8'>
@@ -66,9 +66,10 @@
 		</nav>
 
 
-		<!-- !PAGE CONTENT! -->			
+		<!-- !PAGE CONTENT! -->
 		<div class='main' id='main' style='margin-left:300px;margin-top:68px;'>
 			<script>
+				function asdf() {}
 				var str;
 				var value = new Array();
 				// 중대원을 출력하는 부분
@@ -111,7 +112,59 @@
 
 				// 열외를 저장하고 출력하는 부분
 
-				document.write("<div id='outdoor'> </div>");
+				document.write("<div id='outdoor'>");
+				document.write("<div id='outdoor_group_1'>");
+				for(let i = 0; i < 3; i++)
+				{
+					document.write("<input type='text' readonly id='outdoor_group_name_" + i + "' class='outdoor_group1'>");
+					if(i % 2 == 0)
+					{
+						document.getElementById("outdoor_group_name_" + i + "").style.backgroundColor="#d6d9e7";
+						document.getElementById("outdoor_group_name_" + i + "").style.color="#000000";
+					}
+					else
+					{
+						document.getElementById("outdoor_group_name_" + i + "").style.backgroundColor="#f6e1e4";
+						document.getElementById("outdoor_group_name_" + i + "").style.color="#000000";
+					}
+				}
+				document.write("</div>");
+				document.write("<div id='outdoor1'>");
+				for(let i = 0; i < 10; i++)
+				{
+					document.write("<div id='outdoor_" + i + "' class='outdoor_" + "asdf_" + i + "'>");
+					document.write("<input type='button' readonly id='outdoor_name" + i + "' onclick='asdf()' class='outdoor_name_" + "asdf_" + i + "'>");
+					document.write("<div id='outdoor_main_block_ " + i + "' class='outdoor_main_block_" + "asdf_" + i + "'>");
+					document.write("<div id='outdoor_stack_block_ " + i + "' class='outdoor_stack_block_" + "asdf_" + i + "'>");
+					for(let j = 0; j < 12; j++)
+					{
+						document.write("<input type='button' readonly id='outdoor_people_" + i + "_" + j + "' onclick='asdf()' class='outdoor_people'>" );
+						document.getElementById("outdoor_people_" + i + "_" + j).value = " ";
+					}
+					document.write("</div>");
+					document.write("</div>");
+					document.write("<input type='text' readonly id='outdoor_popular" + i + "' value='열외수:0' class='out_pop_" + "asdf_" + i + "'>");
+					document.write("</div>");
+					if(i % 2 == 0)
+					{
+						document.getElementById("outdoor_name" + i + "").style.backgroundColor = "#d6d9e7";
+						document.getElementById("outdoor_name" + i + "").style.color = "#000000";
+						document.getElementById("outdoor_name" + i + "").style.borderLeft = "2px solid #d6d9e7";
+						document.getElementById("outdoor_name" + i + "").style.borderBottom = "1px solid #2b90d9";
+						document.getElementById("outdoor_name" + i + "").style.borderRight = "2px solid #a6d9e7";
+						document.getElementById("outdoor_name" + i + "").style.borderTop = "1px solid #d8e9ef";
+					}
+					else
+					{
+						document.getElementById("outdoor_name" + i + "").style.backgroundColor = "#d6d9e7";
+						document.getElementById("outdoor_name" + i + "").style.color = "#000000";
+						document.getElementById("outdoor_name" + i + "").style.borderLeft = "2px solid #d6d9e7";
+						document.getElementById("outdoor_name" + i + "").style.borderBottom = "1px solid #2b90d9";
+						document.getElementById("outdoor_name" + i + "").style.borderRight = "2px solid #a6d9e7";
+						document.getElementById("outdoor_name" + i + "").style.borderTop = "1px solid #d8e9ef";
+					}
+				}
+				document.write("</div>")
 			</script>
 		</div>
 		<button class='print' onclick='onPrint()'> 인쇄하기 </button>
