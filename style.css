@@ -161,7 +161,7 @@ hr {
 	background-color:white;
 	font-size:12px;
 	width:80%;
-	height:360px;
+	height:300px;
 	float:left;
 	table-layout: fixed;
 }
@@ -184,7 +184,7 @@ hr {
 	background-color:white;
 	font-size:12px;
 	width:20%;
-	height:360px;
+	height:300px;
 	float:right;
 }
 
@@ -200,5 +200,43 @@ hr {
 
 .company_people_sig {
 	width:100%;
-	height:29px;
+	height:23px;
+}
+
+.outdoor {
+	border:1;
+	border-collapse:collapse;
+	border-spacing:0;
+	background-color:white;
+	font-size:12px;
+	width:100%;
+	text-align:center;
+}
+
+.outdoor1 {
+	border:1px solid black;
+	border-collapse:collapse;
+	border-spacing:0;
+	background-color:white;
+	font-size:12px;
+	width:100%;
+	text-align:center;
+	align-content:center;
+}
+
+.outdoor1 th, td, tr{
+	border: 1px solid black;
+	border-color:black;
+	border-collapse:collapse;
+	align-content:center;
+}
+
+.outdoor_people {
+	width:100%;
+	height:100%;
+}
+
+.outdoor_name {
+	width:100%;
+	height:100%;
 }

@@ -344,23 +344,3 @@ class Company
 		return cnt;
 	}
 }
-
-class Place
-{
-	constructor(_name, _NoP, _type)
-	{
-		this.name = _name;
-		this.NoP = _NoP;
-		this.type = _type; // 영내는 1, 영외는 2
-	}
-
-	//getter
-	getName() {return this.name;}
-	getNoP() {return this.NoP;}
-	getType() {return this.type;}
-
-	//setter
-	setName(_name) {this.name = _name;}
-	setNoP(_NoP) {this.NoP = _NoP;}
-	setType(_type) {this.type = _type}
-}
