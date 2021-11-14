@@ -201,7 +201,7 @@ class Company {
 
 	removeAt() {} // 나중에 필요할 때 만들기 - file i/o 까지 다 구현하고 html단에서의 중대원 추가/삭제 구현시 만질 듯
 
-	returnList(cnt) {
+	returnList(cnt) { // 생활관의 인원(Person)을 return함
 		let arrIndex = 0;
 		var arr = new Array();
 		let curNode = this.getDorm(cnt);
@@ -221,26 +221,49 @@ class Company {
 		return arr;
 	}
 	
-	returnTwoDimArray() { // 중대원들을 2차원배열로 return하는 함수 (간부 제외)
-		var arr = new Array(this.dorm.length - 1);
-		let curNode;
+	returnTwoDimArray() { // 중대원들과 그 위치를 2차원배열로 return하는 함수 (간부 제외)
+		let arr = new Array((this.dorm.length - 1) * 2);
 		let cnt;
-		for(let i = 0; i < this.dorm.length; i++) {
-			this.arr[i] = new Array(10);
+		let arrIndex;
+		// declare array
+		for(let i = 0; i < (this.dorm.length - 1) * 2; i++) {
+			arr[i] = new Array(10);
 		}
-		for(let i = 0; i < this.dorm.length; i++) {
-			cnt = 0;
-			curNode = this.getDorm(i + 1);
-			while (curNode.getNext()) {
-				while (curNode?.getNext() != null) {
-					arr[i][cnt] = curNode.getName();
-					cnt++;
-					curNode = curNode.getNext;
-				}
-				arr[i][cnt] = curNode.getName();
-					cnt++;
+		// initialize array
+		for(let i = 0; i < (this.dorm.length - 1) * 2; i++) {
+			for(let j = 0; j < 10; j++) {
+				arr[i][j] = " ";
 			}
 		}
+		cnt = 1;
+		for(let i = 0; i < (this.dorm.length - 1) * 2; i++) {
+			arrIndex = 0;
+			let curNode = this.getDorm(cnt);
+			if(i % 2 == 0) {
+				while (curNode.getNext()) {
+					while (curNode?.getNext() != null) {
+						arr[i][arrIndex] = curNode.getName();
+						arrIndex++;
+						curNode = curNode.getNext();
+					}
+					arr[i][arrIndex] = curNode.getName();
+					arrIndex++;
+				}
+			}
+			else {
+				while (curNode.getNext()) {
+					while (curNode?.getNext() != null) {
+						arr[i][arrIndex] = curNode.getLoc();
+						arrIndex++;
+						curNode = curNode.getNext();
+					}
+					arr[i][arrIndex] = curNode.getLoc();
+					arrIndex++;
+					cnt++;
+				}
+			}
+		}
+		return arr;
 	}
 
 	// function related to search

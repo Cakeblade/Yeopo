@@ -78,6 +78,7 @@
 			function printCompany(_com, _flag) {
 				let numRoom;
 				let colspan;
+				let data = sig.returnTwoDimArray();
 				
 				str += "<table class='company'>\
 								<tr>";
@@ -104,6 +105,22 @@
 							</tr>";
 						numRoom = 1;
 						colspan = 3;
+						for(let i = 0; i < 10; i++){ // 이름과 현 위치를 출력하는 반복문, 자리가 없어도 10번은 무조건 만들어지게 함.
+							str += "<tr>";
+							if(i<5){
+								for (let j = 0; j < numRoom ; j++) {
+								str += "<td colspan='"+ colspan +"'>김김김</td>\
+										<td colspan='"+ colspan +"'>생활관</td>";
+								}
+							}
+							else{
+								for (let j = 0; j < numRoom ; j++) {
+								str += "<td colspan='"+ colspan +"'></td>\
+										<td colspan='"+ colspan +"'></td>";
+								}
+							}
+							str += "</tr>";
+						}
 						break;
 					case 3: // 생활관 3개
 						str += "<td colspan='6'>" + _com.getName() + "</td>\
@@ -129,6 +146,14 @@
 							</tr>";
 						numRoom = 3;
 						colspan = 1;
+						for(let i = 0; i < 10; i++){ // 이름과 현 위치를 출력하는 반복문, 자리가 없어도 10번은 무조건 만들어지게 함.
+							str += "<tr>";
+							for (let j = 0; j < numRoom * 2 ; j++) {
+								if(j % 2 == 0) str += "<td colspan='" + colspan + "'>" + data[j][i] + "</td>";
+								else str += "<td colspan='" + colspan + "'>" + data[j][i] + "</td>";
+							}
+							str += "</tr>";
+						}
 						break;
 					case 4: // 생활관 4개
 						str += "<td colspan='8'>" + /*_com.getName()*/"XX중대" + "</td>\
@@ -140,11 +165,11 @@
 							</tr>\
 							<tr>\
 								<td colspan='3'>";
-						str += "123";
+						str += _com.getWarrior();
 						str += "</td><td colspan='3'>";
-						str += "345";
+						str += _com.getOutdoorsMans();
 						str += "</td><td colspan='2'>";
-						str += "567";
+						str += _com.getRemainPerson();
 						str += "</td>\
 							</tr>\
 							<tr>\
@@ -155,6 +180,15 @@
 							</tr>";
 						numRoom = 4;
 						colspan = 1;
+						data = c2.returnTwoDimArray();
+						for(let i = 0; i < 10; i++){ // 이름과 현 위치를 출력하는 반복문, 자리가 없어도 10번은 무조건 만들어지게 함.
+							str += "<tr>";
+							for (let j = 0; j < numRoom * 2 ; j++) {
+								if(j % 2 == 0) str += "<td colspan='" + colspan + "'>" + data[j][i] + "</td>";
+								else str += "<td colspan='" + colspan + "'>" + data[j][i] + "</td>";
+							}
+							str += "</tr>";
+						}
 						break;
 					case 8: // 생활관 8개
 						str += "<td colspan='16'>" + /*_com.getName()*/"XX중대" + "</td>\
@@ -185,27 +219,28 @@
 							</tr>";
 						numRoom = 8
 						colspan = 1;
+						for(let i = 0; i < 10; i++){ // 이름과 현 위치를 출력하는 반복문, 자리가 없어도 10번은 무조건 만들어지게 함.
+							str += "<tr>";
+							if(i<5){
+								for (let j = 0; j < numRoom ; j++) {
+								str += "<td colspan='"+ colspan +"'>김김김</td>\
+										<td colspan='"+ colspan +"'>생활관</td>";
+								}
+							}
+							else{
+								for (let j = 0; j < numRoom ; j++) {
+								str += "<td colspan='"+ colspan +"'></td>\
+										<td colspan='"+ colspan +"'></td>";
+								}
+							}
+							str += "</tr>";
+						}
 						break;
 					default:
 						str += "error!";
 						break;
 				}
-				for(let i = 0; i < 10; i++){ // 이름과 현 위치를 출력하는 반복문, 자리가 없어도 10번은 무조건 만들어지게 함.
-					str += "<tr>";
-					if(i<5){
-						for (let j = 0; j < numRoom ; j++) {
-						str += "<td colspan='"+ colspan +"'>김김김</td>\
-								<td colspan='"+ colspan +"'>생활관</td>";
-						}
-					}
-					else{
-						for (let j = 0; j < numRoom ; j++) {
-						str += "<td colspan='"+ colspan +"'></td>\
-								<td colspan='"+ colspan +"'></td>";
-						}
-					}
-					str += "</tr>";
-				}
+				
 				str += "</table>"
 			}
 			str += "<table class='bulletin'>";
@@ -217,7 +252,7 @@
 			printCompany(sig, 3);
 			str += "</td>";
 			str += "<td>";
-			printCompany(asdf, 4);
+			printCompany(c2, 4);
 			str += "</td>";
 			str += "<td>";
 			printCompany(asdf, 1);
@@ -235,7 +270,6 @@
 			</div>";
 			str += "<button class='print' onclick='onPrint()'> 인쇄하기 </button>"
 			document.getElementById('main').innerHTML = str;
-			sig.returnTwoDimArray();
 		</script>
 
 	</body>
