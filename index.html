@@ -4,6 +4,7 @@
 		<title>직할중대 현황판</title>
 		<meta charset='UTF-8'>
 		<link rel='stylesheet' href='./style.css'>
+		<link rel='stylesheet' href='./index.css'>
 		<script language='javascript' src='class.js'></script>
 		<script language='javascript' src='data/people.js'></script>
 		<script>
@@ -79,11 +80,11 @@
 				let numRoom;
 				let colspan;
 				let data = sig.returnTwoDimArray();
-				
-				str += "<table class='company'>\
-								<tr>";
+
 				switch (_flag){ // 중대별 인원 출력
 					case 1: // 생활관 1개
+						str += "<table class='company'>\
+								<tr>";
 						str += "<td colspan='6'>" + "asdf" + "</td>\
 							</tr>\
 							<tr>\
@@ -110,6 +111,48 @@
 							if(i<5){
 								for (let j = 0; j < numRoom ; j++) {
 								str += "<td colspan='"+ colspan +"'>김김김</td>\
+										<td colspan='"+ colspan +"'>집가고싶다</td>";
+								}
+							}
+							else{
+								for (let j = 0; j < numRoom ; j++) {
+								str += "<td colspan='"+ colspan +"'></td>\
+										<td colspan='"+ colspan +"'></td>";
+								}
+							}
+							str += "</tr>";
+						}
+						break;
+					case 2: // 생활관 2개
+						str += "<table class='company'>\
+								<tr>";
+						str += "<td colspan='8'>" + "asdf" + "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='3'>총원</td>\
+								<td colspan='3'>열외</td>\
+								<td colspan='2'>현재원</td>\
+							</tr>\
+							<tr>\
+								<td colspan='3'>";
+						str += "123";
+						str += "</td><td colspan='3'>";
+						str += "456";
+						str += "</td><td colspan='2'>";
+						str += "789";
+						str += "</td>\
+							</tr>\
+							<tr>\
+								<td colspan='4'>1생활관</td>\
+								<td colspan='4'>2생활관</td>\
+							</tr>";
+						numRoom = 2;
+						colspan = 2;
+						for(let i = 0; i < 10; i++){ // 이름과 현 위치를 출력하는 반복문, 자리가 없어도 10번은 무조건 만들어지게 함.
+							str += "<tr>";
+							if(i<5){
+								for (let j = 0; j < numRoom ; j++) {
+								str += "<td colspan='"+ colspan +"'>김김김</td>\
 										<td colspan='"+ colspan +"'>생활관</td>";
 								}
 							}
@@ -123,6 +166,8 @@
 						}
 						break;
 					case 3: // 생활관 3개
+						str += "<table class='company'>\
+								<tr>";
 						str += "<td colspan='6'>" + _com.getName() + "</td>\
 							</tr>\
 							<tr>\
@@ -156,6 +201,8 @@
 						}
 						break;
 					case 4: // 생활관 4개
+						str += "<table class='company'>\
+								<tr>";
 						str += "<td colspan='8'>" + /*_com.getName()*/"XX중대" + "</td>\
 							</tr>\
 							<tr>\
@@ -191,6 +238,8 @@
 						}
 						break;
 					case 8: // 생활관 8개
+						str += "<table class='company'>\
+								<tr>";
 						str += "<td colspan='16'>" + /*_com.getName()*/"XX중대" + "</td>\
 							</tr>\
 							<tr>\
@@ -246,24 +295,28 @@
 			str += "<table class='bulletin'>";
 			str += "<tr>";
 			str += "<td>";
+			str += "<div id='room3'>";
 			printCompany(sig, 3);
-			str += "</td>";
-			str += "<td>";
+			str += "</div>";
+			str += "<div id='room3'>";
 			printCompany(sig, 3);
-			str += "</td>";
-			str += "<td>";
+			str += "</div>";
+			str += "<div id='room4'>";
 			printCompany(c2, 4);
-			str += "</td>";
-			str += "<td>";
+			str += "</div>";
+			str += "<div id='room1'>";
 			printCompany(asdf, 1);
-			str += "</td>";
+			str += "</div>\
+					</td>";
 			str += "</tr>";
 			str += "<tr>";
-			str += "<td colspan = '3'>";
-			printCompany(asdf, 8);
-			str += "</td>";
 			str += "<td>";
-			printCompany(asdf, 1);
+			str += "<div id='room8'>";
+			printCompany(asdf, 8);
+			str += "</div>";
+			str += "<div id='room2'>";
+			printCompany(asdf, 2);
+			str += "</div>";
 			str += "</td>";
 			str += "</tr>\
 				</table>\

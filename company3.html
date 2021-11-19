@@ -5,9 +5,11 @@
 		<title>직할중대 현황판</title>
 		<meta charset='UTF-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<link rel='stylesheet' href='./style.css'>
+		<link rel='stylesheet' href='style.css'>
+		<link rel='stylesheet' href='company.css'>
 		<script language='javascript' src='class.js'></script>
 		<script language='javascript' src='outdoor.js'></script>
+		<script language='javascript' src='fio.js'></script>
 		<script language='javascript' src='data/people.js'></script>
 		<script>
 			function onPrint() 
@@ -76,7 +78,9 @@
 				var value = new Array();
 				// 중대원을 출력하는 부분
 				str = "<div id='company_" + sig.getCName() + "'>";
-				str += "<table class='singleCompany'><tr><td rowspan='2'>" + sig.getName() + "</td>";
+				str += "<table class='singleCompany'><tr><td rowspan='2'>";
+				str += "<div id='companyName' style='font-size:24px;'>" + sig.getName() + "</div>";
+				str += "</td>"
 				for(let i = 0; i < sig.getNumDorm(); i++)
 				{
 					if(i == 0) str += "<td class='roomname'>행정반</td>";
@@ -101,7 +105,7 @@
 				}
 				str += "</tr></div>\
 						<div>\
-							<table class='asdf'>\
+							<table class='outsider'>\
 								<tr><td>총원</td></tr>\
 								<tr><td>" + sig.getWarrior() + "</td></tr>\
 								<tr><td>열외</td></tr>\
@@ -143,34 +147,7 @@
 				document.write("</div>");
 				
 				// 열외 인원을 선택하는 부분
-				document.write("<div id='make_outdoor_add'>");
-				document.write("<div id='outdoor_flame_name'");
-				for(let i = 0; i < 1; i++)
-				{
-					document.write("<input type='button' id='outdoor_flame_name_" + i + "' class='outdoor_flame_name' onclick='outdoor_flame_change_class(" + i + ")'>")
-					if(i==0)
-					{
-						document.getElementById("outdoor_flame_name_" + i + "").value = "통신";
-					}
-				}
-				document.write("</div>");
-				document.write("<div id='outdoor_flame_class'>")
-				for(let i = 0; i < 1; i++)
-				{
-					let str;
-					document.write("<input type='button' onclick='add_all_people_class(" + i + ")' readonly id='outdoor_flame_class_" + i + "' class='outdoor_flame_class'>");
-					if(i==0)
-					{
-						document.getElementById("outdoor_flame_class_" + i + "").value = "행정반";
-					}
-					else
-					{
-						str = i;
-						str += "생활관";
-						document.getElementById("outdoor_flame_class_" + i + "").value = str;
-					}
-				}
-				document.write("</div>");
+				
 				
 				/*
 				document.write("<div id='outdoor'>");

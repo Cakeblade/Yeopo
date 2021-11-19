@@ -1,0 +1,44 @@
+.company {
+	background-color:white;
+	table-layout:fixed;
+	font-size:10px;
+	width:100%;
+}
+
+.company td {
+	height: 18px;
+	border-color:black;
+	border-style:solid;
+	border-width:1px;
+	overflow:hidden;
+	text-align:center;
+}
+
+.bulletin {
+	width:100%;
+}
+
+#room1{
+	float:left;
+	width:15%;
+}
+
+#room2{
+	float:left;
+	width:25%;
+}
+
+#room3{
+	float:left;
+	width:25%;
+}
+
+#room4{
+	float:left;
+	width:35%;
+}
+
+#room8{
+	float:left;
+	width:75%;
+}
