@@ -74,22 +74,17 @@
 			<script>
 				function asdf() { alert("asdf");}
 				function asdff() { alert("asdff");}
-				function asdf1_outdoor_people() { alert("asdf1_outdoor_people");}
-				function asdf2_outdoor_people() { alert("asdf2_outdoor_people");}
-				function asdf3_outdoor_people() { alert("asdf3_outdoor_people");}
-				function asdf4_outdoor_people() { alert("asdf4_outdoor_people");}
 				var str;
 				var value = new Array();
-
 				// 중대원을 출력하는 부분
-				str = "<div id='company'>";
+				str = "<div id='company_" + sig.getCName() + "'>";
 				str += "<table class='singleCompany'><tr><td rowspan='2'>";
 				str += "<div id='companyName' style='font-size:30px;'>" + sig.getName() + "</div>";
-				str += "<div id='manageButton'>";
-				str += "<button id='manageCompany' onclick='";
-				str += 'location.href="./company3_1.html"';
-				str += "'>중대원 수정</button>"
-				str += "</div'>";
+                str += "<div id='manageButton'>";
+                str += "<button id='manageCompany' onclick='";
+				str += 'location.href="./company3.html"';
+				str += "'>중대원 현황</button>"
+				str += "</div>";
 				str += "</td>"
 				for(let i = 0; i < sig.getNumDorm(); i++)
 				{
@@ -126,74 +121,31 @@
 						</div>";
 				document.getElementById('main').innerHTML = str;
 
-
-				// 열외를 저장하고 출력하는 부분
-				document.write("<div id='outdoor'>");
-				document.write("<table class='outdoor'>");
-				document.write("<tr>");
-				for(let i = 0; i < 15; i ++)
-				{
-					document.write("<td>");
-					document.write("<table class='outdoor1'>");
-					document.write("<tr>");
-					document.write("<td class='outdoor_name' id='outdoor_name_" + i + "_'>");
-					//document.write("여기");
-					document.write("<input type='button' readonly id='outdoor_name" + i + "' onclick='outdoor_people_add(" + i + ")' class='outdoor_name' value='여기'>");
-					document.write("</td>");
-					for(let j = 0; j < 10; j++)
-					{
-						document.write("<tr>");
-						document.write("<td align='center'>");
-						document.write("<input type='button' readonly id='outdoor_people_" + i + "_" + j + "' onclick='asdff()' class='outdoor_people' value=''>");
-						document.write("</td>");
-						document.write("</tr>");
-					}
-					document.write("</tr>");
-					document.write("</table>");
-					document.write("</td>");
-				}
-				document.write("</tr>");
-				document.write("</table>");
-				document.write("</div>");
-				
-				// 열외 인원을 선택하는 부분
-				document.write("<div id='make_outdoor_add'>");
-				document.write("<div id='outdoor_flame_name'>");
-				document.write("<input type='button' id='outdoor_flame_name1' class='outdoor_flame_name' onclick='outdoor_flame_change_class(1)'>");
-				document.write("</div>");
-				document.write("<div id='outdoor_flame_class'>");
-				for(let i = 0; i < 4; i++) {
-					document.write("<input type='button' onclick='asdf()' readonly id='outdoor_flame_class_" + i + "' class='outdoor_flame_class'>");
-					switch (i) {
-						case 1:
-							document.getElementById("outdoor_flame_class_" + i + "").value = "1생활관";
-							break;
-						case 2:
-							document.getElementById("outdoor_flame_class_" + i + "").value = "2생활관";
-							break;
-						case 3:
-							document.getElementById("outdoor_flame_class_" + i + "").value = "3생활관";
-							break;
-						default:
-							document.getElementById("outdoor_flame_class_" + i + "").value = "행정반";
-							break;	
-					}
-				 }
-				 document.write("</div>");
-				 for(let i = 0; i < 4; i++) {
-					document.write("<div class='outdoor_flame_block'>");
-					for(let j = 0; j < 10; j++){
-						document.write("<input type='button' onclick='outdoor_flame_add(" + i + "," + j + ")' ondbclick='outdoor_flame_add_2(" + i + "," + j + ")' id='outdoor_flame_people_" + i + "_" + j + "' class='outdoor_add_block'>");
-					}
-					document.write("</div>");
-				 }
-				 document.write("<div id='outdoor_flame_check'>");
-				 document.write("<button id='outdoor_flame_check_1' onclick='asdf1_outdoor_people()' class=outdoor_add_people_button'>취소</button>");
-				 document.write("<button id='outdoor_flame_check_1' onclick='asdf2_outdoor_people()' class=outdoor_add_people_button'>확인</button>");
-				 document.write("<button id='outdoor_flame_check_1' onclick='asdf3_outdoor_people()' class=outdoor_add_people_button'>전체</button>");
-				 document.write("<button id='outdoor_flame_check_1' onclick='asdf4_outdoor_people()' class=outdoor_add_people_button'>복귀</button>");
-				 document.write("</div>");
-				 document.write("</div>");
+                // 중대원을 추가하고 삭제하는 부분
+                document.write("<div class='managePeople'>");
+                document.write("<table id='manage_in'>");
+                document.write("<tr>");
+                document.write("<th colspan='3'>전입</th>");
+                document.write("</tr>");
+                document.write("<tr>");
+                document.write("<td>이름</td>");
+                document.write("<td><input type='text' id='manage_in_name'></td>");
+                document.write("<td rowspan='2'><button id='submit'>수정</button>")
+                document.write("</tr>");
+                document.write("<tr>");
+                document.write("<td>생활관</td>");
+                document.write("<td><input type='text' id='manage_in_room'></td>");
+                document.write("</tr>");
+                document.write("<table id='manage_out'>");
+                document.write("<tr>");
+                document.write("<th colspan='3'>전역/전출</th>");
+                document.write("</tr>");
+                document.write("<tr>");
+                document.write("<td>이름</td>");
+                document.write("<td><input type='text' id='manage_in_name'></td>");
+                document.write("<td><button id='submit'>수정</button></td>")
+                document.write("</tr></table>");
+                document.write("</div>");
 			</script>
 		</div>
 		<button class='print' onclick='onPrint()'> 인쇄하기 </button>

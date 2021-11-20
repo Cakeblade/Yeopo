@@ -64,3 +64,18 @@ class Outdoor {
 	}
 	
 }
+
+function outdoor_people_add(_outdoor) {
+	selected_company_num = undefined;
+	if(document.getElementById("make_outdoor_add").style.zIndex == 2 && _outdoor == outdoor_number) {
+		document.getElementById("make_outdoor_add").style.zIndex = 0;
+	} 
+	else {
+		// 열외 추가창 앞으로
+		document.getElementById("make_outdoor_add").style.zIndex = 2;
+		
+		//선택된 열외 위치를 _outdoor로 변경
+		outdoor_number = _outdoor;
+
+	}
+}
