@@ -1,0 +1,107 @@
+#make_outdoor_add {
+    width: 320px;
+    height: 199px;
+    text-align: center;
+    position: absolute;
+    left: 100px;
+    z-index: 0;
+    background-attachment: #f6e1f4;
+}
+
+.outdoor_flame_name {
+    width: 320px;
+    height: 15px;
+    text-align: center;
+    float: left;
+    background-color: #f6e1f4;
+    color: #000000;
+    border-left: 0.5px solid #f6e1b4;
+    border-right: 0.5px solid #f6e1b4;
+    border-top: 0.5px solid #f6e1b4;
+    border-bottom: 0.5px solid #f6e1b4;
+}
+
+#outdoor_flame_name {
+    width: 320px;
+    height: 15px;
+    text-align: center;
+    float: left;
+}
+
+.outdoor_flame_class {
+    width: 80px;
+    height: 15px;
+    text-align: center;
+    float: left;
+    background-color: #f6e1f4;
+    color: #000000;
+    border-left: 0.5px solid #f6e1b4;
+    border-right: 0.5px solid #f6e1b4;
+    border-top: 0.5px solid #f6e1b4;
+    border-bottom: 0.5px solid #f6e1b4;
+}
+
+#outdoor_flame_class {
+    width: 320px;
+    height: 15px;
+    text-align: center;
+    float: left;
+}
+
+.outdoor_add_block {
+    width: 80px;
+    height: 15px;
+    text-align: center;
+    float: left;
+    background-color: center;
+    border: 1px solid #999999;
+    border-bottom: 1px solid #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.outdoor_flame_block {
+    width: 80px;
+    height: 150px;
+    text-align: center;
+    float: left;
+    font-size: 7px;
+}
+
+#outdoor_flame_check {
+    width: 320px;
+    height: 18px;
+    text-align: center;
+    float: left;
+}
+
+.outdoor_add_people_button {
+    width: 80px;
+    height: 18px;
+    text-align: center;
+    float: right;
+    background-color: #b4d4f4;
+    border-left: 1px solid #d8e9ef;
+    border-right: 1px solid #a3daff;
+    border-top: 1px solid #a3daff;
+    border-bottom: 1px solid #d8e9ef;
+    font-size: 11px;
+}
+
+#outdoor_flame_check_1 {
+    width: 80px;
+}
+
+#outdoor_flame_check_2 {
+    width:80px;
+} 
+
+#outdoor_flame_check_3 {
+    width: 80px;
+    float: left;
+}
+
+#outdoor_flame_check_4 {
+    width: 80px;
+    float: left;
+}
