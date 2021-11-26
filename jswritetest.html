@@ -5,8 +5,10 @@
 		<title>직할중대 현황판</title>
 		<meta charset='UTF-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<link rel='stylesheet' href='./style.css'>
-		<script type='javascript' src='main.js'></script>
+		<script language='javascript' src='linuxclass.js'></script>
+		<script language='javascript' src='outdoor.js'></script>
+		<script language='javascript' src='fio.js'></script>
+		<script language='javascript' src='data/sig.js'></script>
 		<script>
 			function onPrint() {
 				const html = document.querySelector('html');
@@ -21,58 +23,36 @@
 				document.body.style.display = 'block';
 				printDiv.style.display = 'none';
 			}
+			
+			
 		</script>
 	</head>
 	<body>
-	
-		<!-- Top container -->
-		<div class='bar top' style='z-index:4' font-size='18px'>
-			<h3>
-				<span>XXX여단 본부 직할중대 현황판</span>
-				<span id='printClock'>printClock</span>
-				<script>
-					var Target = document.getElementById('printClock');
-					function printClock()
-					{
-						var time = new Date();
-						var month = time.getMonth();
-						var date = time.getDate();
-						var hours = time.getHours();
-						var minutes = time.getMinutes();
-						var seconds = time.getSeconds();
-						if(hours < 12) {apm = 'AM';}
-						else {apm = 'PM';}
-						Target.innerText = `${month + 1}월 ${date}일 ` + `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-					}
-					printClock();
-					setInterval(printClock, 1000);
-				</script>
-			</h3>
-			
-		</div>
-
-		<!-- Sidebar/menu -->
-		<nav class='sidebar' style='z-index:3;width:300px;' id='mySidebar'><br>
-  			<div class='barBlock'>
-   				<a href='jswritetest.html' class='barItem button'> 현황판</a>
-				<a href='#' class='barItem button'> XX중대</a>
-				<a href='#' class='barItem button'> XX중대</a>
-   				<a href='#' class='barItem button'> XX중대</a>
-				<a href='#' class='barItem button'> XX중대</a>
-				<a href='#' class='barItem button'> XX중대</a>
-				<a href='#' class='barItem button'> XX중대</a><br><br>
-  			</div>
-		</nav>
-
-
-		<!-- !PAGE CONTENT! -->
-		<div class='main' id='main' style='margin-left:300px;margin-top:68px;'>
-			
-		</div>
-		<button class='print' onclick='onPrint()'> 인쇄하기 </button>
+		<input type="file" onchange="loadFile(this.files[0])">
+		<br>
+		<pre id="output"></pre>
 		<script>
+			async function loadFile(file) {
+				var text = await file.text();
+				document.getElementById('output').textContent = text;
+			}
 			
-		</script>
+			saveToFile_Chrome("asdf.js", text);
+			
+			function saveToFile_Chrome(fileName, content) {
+				var blob = new Blob([content], { type: 'text/plain' });
+				objURL = window.URL.createObjectURL(blob);
 
+				// 이전에 생성된 메모리 해제
+				if (window.__Xr_objURL_forCreatingFile__) {
+					window.URL.revokeObjectURL(window.__Xr_objURL_forCreatingFile__);
+				}
+				window.__Xr_objURL_forCreatingFile__ = objURL;
+				var a = document.createElement('a');
+				a.download = fileName;
+				a.href = "./data";
+				a.click();
+			}
+		</script>
 	</body>
 </html>

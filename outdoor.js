@@ -65,6 +65,36 @@ class Outdoor {
 	
 }
 
+function getOffset(element)
+{
+    if (!element.getClientRects().length)
+    {
+      return { top: 0, left: 0 };
+    }
+
+    let rect = element.getBoundingClientRect();
+    let win = element.ownerDocument.defaultView;
+    return (
+    {
+      top: rect.top + win.pageYOffset,
+      left: rect.left + win.pageXOffset
+    });   
+}
+
+
+function pop_position(_outdoor) {
+	let button = "outdoor_name" + _outdoor;
+	let div = "make_outdoor_add";
+	
+	let offset = getOffset(document.getElementById(button));
+	let _x = 0;
+	let _y = 0;
+	
+	document.getElementById("make_outdoor_add").style.top = offset.top;
+	document.getElementById("make_outdoor_add").style.left = offset.left;
+	
+}
+
 function outdoor_people_add(_outdoor) {
 	selected_company_num = undefined;
 	if(document.getElementById("make_outdoor_add").style.zIndex == 2 && _outdoor == outdoor_number) {
@@ -73,6 +103,7 @@ function outdoor_people_add(_outdoor) {
 	else {
 		// 열외 추가창 앞으로
 		document.getElementById("make_outdoor_add").style.zIndex = 2;
+		pop_position(_outdoor);
 		
 		//선택된 열외 위치를 _outdoor로 변경
 		outdoor_number = _outdoor;
