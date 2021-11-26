@@ -37,7 +37,7 @@
 				document.getElementById('output').textContent = text;
 			}
 			
-			saveToFile_Chrome("asdf.js", text);
+			saveToFile_Chrome("asdf.js", document.getElementById('output').textContent);
 			
 			function saveToFile_Chrome(fileName, content) {
 				var blob = new Blob([content], { type: 'text/plain' });
