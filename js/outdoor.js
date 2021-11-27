@@ -65,33 +65,22 @@ class Outdoor {
 	
 }
 
-function getOffset(element)
-{
-    if (!element.getClientRects().length)
-    {
-      return { top: 0, left: 0 };
-    }
-
-    let rect = element.getBoundingClientRect();
-    let win = element.ownerDocument.defaultView;
-    return (
-    {
-      top: rect.top + win.pageYOffset,
-      left: rect.left + win.pageXOffset
-    });   
-}
-
 
 function pop_position(_outdoor) {
-	let button = "outdoor_name" + _outdoor;
+	let button = "#outdoor_name" + _outdoor;
 	let div = "make_outdoor_add";
+	let jdiv = $(button);
 	
-	let offset = getOffset(document.getElementById(button));
+	let offset = jdiv.offset();
 	let _x = 0;
 	let _y = 0;
 	
-	document.getElementById("make_outdoor_add").style.top = offset.top;
-	document.getElementById("make_outdoor_add").style.left = offset.left;
+	$("#make_outdoor_add").css({
+		"position" : "absolute",
+		"top" : offset.top,
+		"left" : offset.left,
+		"display" : "block"
+	});
 	
 }
 
@@ -109,4 +98,11 @@ function outdoor_people_add(_outdoor) {
 		outdoor_number = _outdoor;
 
 	}
+}
+
+function cancel_outdoor_people() {
+	selected_company_num = undefined;
+	$("#make_outdoor_add").css({
+		"display" : "none"
+	});
 }

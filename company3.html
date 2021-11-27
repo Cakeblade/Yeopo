@@ -5,12 +5,13 @@
 		<title>직할중대 현황판</title>
 		<meta charset='UTF-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<link rel='stylesheet' href='./style.css'>
-		<link rel='stylesheet' href='./company.css'>
-		<link rel='stylesheet' href='./outdoor.css'>
-		<script language='javascript' src='linuxclass.js'></script>
-		<script language='javascript' src='outdoor.js'></script>
-		<script language='javascript' src='fio.js'></script>
+		<link rel='stylesheet' href='css/style.css'>
+		<link rel='stylesheet' href='css/company.css'>
+		<link rel='stylesheet' href='css/outdoor.css'>
+		<script language='javascript' src='js/jquery-3.6.0.js'></script>
+		<script language='javascript' src='js/linuxclass.js'></script>
+		<script language='javascript' src='js/outdoor.js'></script>
+		<script language='javascript' src='js/fio.js'></script>
 		<script language='javascript' src='data/sig.js'></script>
 		<script>
 			function onPrint() 
@@ -160,7 +161,7 @@
 				// 열외 인원을 선택하는 부분
 				document.write("<div id='make_outdoor_add'>");
 				document.write("<div id='outdoor_flame_name'>");
-				document.write("<input type='button' id='outdoor_flame_name1' class='outdoor_flame_name' onclick='outdoor_flame_change_class(1)'>");
+				document.write("<input type='button' id='outdoor_flame_name1' class='outdoor_flame_name' onclick='outdoor_flame_change_class(1)' value='통신'>");
 				document.write("</div>");
 				document.write("<div id='outdoor_flame_class'>");
 				for(let i = 0; i < 4; i++) {
@@ -179,22 +180,42 @@
 							document.getElementById("outdoor_flame_class_" + i + "").value = "행정반";
 							break;	
 					}
-				 }
-				 document.write("</div>");
-				 for(let i = 0; i < 4; i++) {
+				}
+				document.write("</div>");
+				for(let i = 0; i < 4; i++) {
 					document.write("<div class='outdoor_flame_block'>");
 					for(let j = 0; j < 10; j++){
 						document.write("<input type='button' onclick='outdoor_flame_add(" + i + "," + j + ")' ondbclick='outdoor_flame_add_2(" + i + "," + j + ")' id='outdoor_flame_people_" + i + "_" + j + "' class='outdoor_add_block'>");
 					}
 					document.write("</div>");
-				 }
-				 document.write("<div id='outdoor_flame_check'>");
-				 document.write("<button id='outdoor_flame_check_1' onclick='asdf1_outdoor_people()' class=outdoor_add_people_button'>취소</button>");
-				 document.write("<button id='outdoor_flame_check_1' onclick='asdf2_outdoor_people()' class=outdoor_add_people_button'>확인</button>");
-				 document.write("<button id='outdoor_flame_check_1' onclick='asdf3_outdoor_people()' class=outdoor_add_people_button'>전체</button>");
-				 document.write("<button id='outdoor_flame_check_1' onclick='asdf4_outdoor_people()' class=outdoor_add_people_button'>복귀</button>");
-				 document.write("</div>");
-				 document.write("</div>");
+				}
+				document.write("<div id='outdoor_flame_check'>");
+				document.write("<button id='outdoor_flame_check_1' onclick='cancel_outdoor_people()' class=outdoor_add_people_button'>취소</button>");
+				document.write("<button id='outdoor_flame_check_1' onclick='asdf2_outdoor_people()' class=outdoor_add_people_button'>확인</button>");
+				document.write("<button id='outdoor_flame_check_1' onclick='asdf3_outdoor_people()' class=outdoor_add_people_button'>전체</button>");
+				document.write("<button id='outdoor_flame_check_1' onclick='asdf4_outdoor_people()' class=outdoor_add_people_button'>복귀</button>");
+				document.write("</div>");
+				document.write("</div>");
+				
+				
+				// 아무데나 누르면 없어지는 함수
+				$(function(){
+					$(document).mousedown(function( e ){
+						if( $("#make_outdoor_add").is(":visible") ) {
+							$("#make_outdoor_add").each(function(){
+								var l_position = $(this).offset();
+								l_position.right = parseInt(l_position.left) + ($(this).width());
+								l_position.bottom = parseInt(l_position.top) + parseInt($(this).height());
+
+								if( ( l_position.left <= e.pageX && e.pageX <= l_position.right )
+									&& ( l_position.top <= e.pageY && e.pageY <= l_position.bottom ) ) {
+								} else {
+									$(this).hide();
+								}
+							});
+						}
+					});
+				});
 			</script>
 		</div>
 		<button class='print' onclick='onPrint()'> 인쇄하기 </button>
