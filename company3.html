@@ -76,7 +76,6 @@
 			<script>
 				function asdf() { alert("asdf");}
 				function asdff() { alert("asdff");}
-				function asdf1_outdoor_people() { alert("asdf1_outdoor_people");}
 				function asdf2_outdoor_people() { alert("asdf2_outdoor_people");}
 				function asdf3_outdoor_people() { alert("asdf3_outdoor_people");}
 				function asdf4_outdoor_people() { alert("asdf4_outdoor_people");}
@@ -198,7 +197,7 @@
 				document.write("</div>");
 				
 				
-				// 아무데나 누르면 없어지는 함수
+				// 아무데나 누르면 열외 창이 없어지는 함수
 				$(function(){
 					$(document).mousedown(function( e ){
 						if( $("#make_outdoor_add").is(":visible") ) {
@@ -216,6 +215,8 @@
 						}
 					});
 				});
+
+				
 			</script>
 		</div>
 		<button class='print' onclick='onPrint()'> 인쇄하기 </button>
