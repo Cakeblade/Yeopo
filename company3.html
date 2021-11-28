@@ -13,6 +13,7 @@
 		<script language='javascript' src='js/outdoor.js'></script>
 		<script language='javascript' src='js/fio.js'></script>
 		<script language='javascript' src='data/sig.js'></script>
+		<script language='javascript' src='data/outdoorlist.js'></script>
 		<script>
 			function onPrint() 
 			{
@@ -76,7 +77,6 @@
 			<script>
 				function asdf() { alert("asdf");}
 				function asdff() { alert("asdff");}
-				function asdf1_outdoor_people() { alert("asdf1_outdoor_people");}
 				function asdf2_outdoor_people() { alert("asdf2_outdoor_people");}
 				function asdf3_outdoor_people() { alert("asdf3_outdoor_people");}
 				function asdf4_outdoor_people() { alert("asdf4_outdoor_people");}
@@ -136,7 +136,7 @@
 				for(let i = 0; i < 15; i ++)
 				{
 					document.write("<td>");
-					document.write("<table class='outdoor1'>");
+					document.write("<table id='outdoor1'>");
 					document.write("<tr>");
 					document.write("<td class='outdoor_name' id='outdoor_name_" + i + "_'>");
 					//document.write("여기");
@@ -197,8 +197,19 @@
 				document.write("</div>");
 				document.write("</div>");
 				
+				updateOutdoor(sig);
 				
-				// 아무데나 누르면 없어지는 함수
+				for(let i = 0; i < 15; i++) {
+					$("#outdoor_name" + i + "").val(outdoorArray[i].getName());
+					for(let j = 0; j < 10; j++) {
+						if(outdoorArray[i].getMans(sig.getNum())[j] == undefined) break;
+						else {
+							$("#outdoor_people_" + i + "_" + j + "").val(outdoorArray[i].getMans(sig.getNum())[j].getName());
+						}
+					}
+				}
+				
+				// 아무데나 누르면 열외 창이 없어지는 함수
 				$(function(){
 					$(document).mousedown(function( e ){
 						if( $("#make_outdoor_add").is(":visible") ) {

@@ -1,10 +1,7 @@
 class Outdoor {
-	Outdoor(_name) {
+	constructor(_name) {
 		this.name = _name;
 		this.mans = new Array(6); // 0~5까지 중대를 지정
-		for(let i = 0; i < 6; i++) {
-			this.mans[i] = new Array();
-		}
 		this.numMans = new Array(0, 0, 0, 0, 0, 0);
 		this.allNum = 0;
 	}
@@ -36,33 +33,12 @@ class Outdoor {
 	setName(_name) {
 		this.name = _name;
 	}
-	setNumMans(_index, _value) {
-		this.numMans[_index] = _value;
+	setMans(_index, _mansArr) {
+		this.mans[_index] = _mansArr;
+		this.numMans[_index] = _mansArr.length;
+		this.allNum = this.getallNum() + _mansArr.length;
 	}
-	
-	addMans(_mans, _com) {
-		let index;
-		switch (_com) {
-			case "sig":
-				index = 0;
-			case "c2":
-				index = 1;
-			case "c3":
-				index = 2;
-			case "c4":
-				index = 3;
-			case "c5":
-				index = 4;
-			case "c6":
-				index = 5;
-			default:
-				alert("Error!");
-				return;
-		}
-		this.mans[index][this.getNumMans(index)] = _mans;
-		this.setNumMans(index, this.getNumMans(index) + 1);
-	}
-	
+		
 }
 
 
@@ -105,4 +81,12 @@ function cancel_outdoor_people() {
 	$("#make_outdoor_add").css({
 		"display" : "none"
 	});
+}
+
+function updateOutdoor(_company) {
+	let arr = new Array();
+	for(let i = 0; i < outdoorArray.length; i++) {
+		arr = _company.findPersonByLocation(outdoorArray[i].getName())
+		if(arr != 0 && arr != undefined) outdoorArray[i].setMans(_company.getNum(), arr);
+	}
 }

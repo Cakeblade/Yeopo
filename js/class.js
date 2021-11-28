@@ -43,7 +43,7 @@ class Person { // Node of linked list
 }
 
 class Company {
-	constructor(_name, _cname, _mans ) { // 생성시에 초기 매개변수로 인원 1명이 필요 (중대장을 기준으로 할 예정)
+	constructor(_name, _cname, _mans, _num) { // 생성시에 초기 매개변수로 인원 1명이 필요 (중대장을 기준으로 할 예정)
 		this.name = _name;
 		this.cname = _cname;
 		this.numMans = 1; // 중대원들 총원 수
@@ -58,6 +58,7 @@ class Company {
 		this.dorm = new Array(_mans); // 생활관 배열, 인원을 넣어 초기화해야한다, head들의 배열.
 		this.nDorm = new Array(); // 생활관별 인원수를 저장하는 배열
 		this.nDorm.push(parseInt('1', 10));
+		this.num = _num;
 	}
 
 	// getter
@@ -117,6 +118,9 @@ class Company {
 	}
 	getRemainPerson() {
 		return this.getWarrior() - this.getOutdoorsMans();
+	}
+	getNum() {
+		return this.num;
 	}
 
 	// setter
