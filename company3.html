@@ -142,13 +142,20 @@
 					//document.write("여기");
 					document.write("<input type='button' readonly id='outdoor_name" + i + "' onclick='outdoor_people_add(" + i + ")' class='outdoor_name' value='여기'>");
 					document.write("</td>");
-					for(let j = 0; j < 10; j++)
+					for(let j = 0; j < 11; j++)
 					{
 						document.write("<tr>");
-						document.write("<td align='center'>");
-						document.write("<input type='button' readonly id='outdoor_people_" + i + "_" + j + "' onclick='asdff()' class='outdoor_people' value=''>");
+						document.write("<td class='outdoor_people_td'>");
+						document.write("<input type='button' readonly id='outdoor_people_" + i + "_" + j + "' onclick='outdoor_delete_people(" + i + ", " + j + ", sig)' class='outdoor_people' value=''>");
 						document.write("</td>");
 						document.write("</tr>");
+						if(j == 10) {
+							document.write("<tr>");
+							document.write("<td class='outdoor_people_td'>");
+							document.write("<input type='button' readonly id='outdoor_name" + i + "_num' class='outdoor_people' value='여기'>");
+							document.write("</td>");
+							document.write("</tr>");
+						}
 					}
 					document.write("</tr>");
 					document.write("</table>");
@@ -197,21 +204,20 @@
 				document.write("</div>");
 				document.write("</div>");
 				
-				updateOutdoor(sig);
-				
-<<<<<<< HEAD
-				for(let i = 0; i < 15; i++) {
-					$("#outdoor_name" + i + "").val(outdoorArray[i].getName());
-					for(let j = 0; j < 10; j++) {
-						if(outdoorArray[i].getMans(sig.getNum())[j] == undefined) break;
-						else {
-							$("#outdoor_people_" + i + "_" + j + "").val(outdoorArray[i].getMans(sig.getNum())[j].getName());
-						}
+				for(let i = 0; i < sig.getNumDorm(); i++)
+				{
+					let output;
+					value = sig.returnList(i);
+					for(let j = 0; j < 11; j++)
+					{
+						if(value[j]) output = value[j].getName();
+						else output = " ";
+						$("#outdoor_flame_people_" + i + "_" + j + "").val(output);
 					}
 				}
 				
-=======
->>>>>>> acf26bad5ea5d7ceb92fc23959242a95399a57fa
+				printOutdoor(sig);
+				
 				// 아무데나 누르면 열외 창이 없어지는 함수
 				$(function(){
 					$(document).mousedown(function( e ){

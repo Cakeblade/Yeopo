@@ -35,7 +35,7 @@ class Person { // Node of linked list
 		this.val[2] = _Typ;
 	} // 용사 0, 간부 1
 	setLoc(_Loc) {
-		this.var[3] = _Loc;
+		this.val[3] = _Loc;
 	}
 	setNext(_level) {
 		this.next = _level;
@@ -276,6 +276,7 @@ class Company {
 		let cnt = 0;
 		let arrIndex = 0;
 		var arr = new Array();
+		arr[0] = -1; // initialize
 		while (this.dorm[cnt]) {
 			let curNode = this.getDorm(cnt);
 			while (curNode.getNext() != null) {
@@ -301,6 +302,7 @@ class Company {
 		let cnt = 0;
 		let arrIndex = 0;
 		var arr = new Array();
+		arr[0] = -1; // initialize
 		while (this.dorm[cnt]) {
 			let curNode = this.getDorm(cnt);
 			while (curNode.getNext() != null) {
@@ -326,6 +328,7 @@ class Company {
 		let cnt = 0;
 		let arrIndex = 0;
 		var arr = new Array();
+		arr[0] = -1; // initialize
 		while (this.dorm[cnt]) {
 			let curNode = this.getDorm(cnt);
 			while (curNode.getNext() != null) {
@@ -351,6 +354,7 @@ class Company {
 		let cnt = 0;
 		let arrIndex = 0;
 		var arr = new Array();
+		arr[0] = -1; // initialize
 		while (this.dorm[cnt]) {
 			let curNode = this.getDorm(cnt);
 			while (curNode.getNext() != null) {

@@ -35,8 +35,15 @@ class Outdoor {
 	}
 	setMans(_index, _mansArr) {
 		this.mans[_index] = _mansArr;
-		this.numMans[_index] = _mansArr.length;
+		if(_mansArr[0] != -1) this.numMans[_index] = _mansArr.length;
+		else this.numMans[_index] = 0;
 		this.allNum = this.getallNum() + _mansArr.length;
+	}
+	
+	initMans(_index) {
+		this.mans[_index] = -1;
+		this.allNum = this.getAllNum() - this.numMans[_index];
+		this.numMans[_index] = 0;
 	}
 		
 }
@@ -76,6 +83,50 @@ function outdoor_people_add(_outdoor) {
 	}
 }
 
+function updateOutdoor(_company) {
+	let arr = new Array();
+	for(let i = 0; i < outdoorArray.length; i++) {
+		arr = _company.findPersonByLocation(outdoorArray[i].getName())
+		outdoorArray[i].initMans(_company.getNum());
+		if(arr != 0 && arr != undefined) outdoorArray[i].setMans(_company.getNum(), arr);
+	}
+}
+
+function printOutdoor(_company) {
+	// initialize
+	for(let i = 0; i < 15; i++) {
+		$("#outdoor_name" + i + "").val(outdoorArray[i].getName());
+		for(let j = 0; j < 10; j++) {
+			$("#outdoor_people_" + i + "_" + j + "").val(" ");
+		}
+	}
+	updateOutdoor(_company);
+	for(let i = 0; i < 15; i++) {
+		$("#outdoor_name" + i + "").val(outdoorArray[i].getName());
+		for(let j = 0; j < 10; j++) {
+			if(outdoorArray[i].getMans(_company.getNum()) == -1) break;
+			if(outdoorArray[i].getMans(_company.getNum())[j] == undefined) break;
+			else {
+				$("#outdoor_people_" + i + "_" + j + "").val(outdoorArray[i].getMans(_company.getNum())[j].getName());
+			}
+		}
+		$("#outdoor_name" + i + "_num").val("열외 : " + outdoorArray[i].getNumMans(_company.getNum()));
+	}
+}
+
+function outdoor_delete_people(_i, _j, _company) {
+	let name = $("#outdoor_people_" + _i + "_" + _j + "").val();
+	let man = _company.findPersonByName(name);
+	if(man[0] != -1) {
+		man[0].setLoc("생활관");
+		printOutdoor(_company);	
+	}
+}
+
+function outdoor_flame_add(_i, _j, _company) {
+	
+}
+
 function cancel_outdoor_people() {
 	selected_company_num = undefined;
 	$("#make_outdoor_add").css({
@@ -83,10 +134,15 @@ function cancel_outdoor_people() {
 	});
 }
 
-function updateOutdoor(_company) {
-	let arr = new Array();
-	for(let i = 0; i < outdoorArray.length; i++) {
-		arr = _company.findPersonByLocation(outdoorArray[i].getName())
-		if(arr != 0 && arr != undefined) outdoorArray[i].setMans(_company.getNum(), arr);
+function add_outdoor_people() {
+	let name = $("#outdoor_people_" + _i + "_" + _j + "").val();
+	let man = _company.findPersonByName(name);
+	if(man[0] != -1) {
+		man[0].setLoc("생활관");
+		printOutdoor(_company);	
 	}
+}
+
+function return_outdoor_people() {
+	
 }
