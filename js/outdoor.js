@@ -48,9 +48,9 @@ class Outdoor {
 		
 }
 
-var selected_outdoor = undefined;
+var selectedOutdoor = undefined;
 
-function pop_position(_outdoor) {
+function popPosition(_outdoor) {
 	let button = "#outdoor_name" + _outdoor;
 	let div = "make_outdoor_add";
 	let jdiv = $(button);
@@ -68,15 +68,15 @@ function pop_position(_outdoor) {
 	
 }
 
-function outdoor_people_add(_outdoor) {
+function outdoorPeopleAdd(_outdoor) {
 	selected_company_num = undefined;
-	if(document.getElementById("make_outdoor_add").style.zIndex == 2 && _outdoor == outdoor_number) {
+	if(document.getElementById("make_outdoor_add").style.zIndex == 2) {
 		document.getElementById("make_outdoor_add").style.zIndex = 0;
 	} 
 	else {
 		// 열외 추가창 앞으로
 		document.getElementById("make_outdoor_add").style.zIndex = 2;
-		pop_position(_outdoor);
+		popPosition(_outdoor);
 		
 		//선택된 열외 위치를 _outdoor로 변경
 		outdoor_number = _outdoor;
@@ -115,7 +115,7 @@ function printOutdoor(_company) {
 	}
 }
 
-function outdoor_delete_people(_i, _j, _company) {
+function outdoorDeletePeople(_i, _j, _company) {
 	let name = $("#outdoor_people_" + _i + "_" + _j + "").val();
 	let man = _company.findPersonByName(name);
 	if(man[0] != -1) {
@@ -124,7 +124,7 @@ function outdoor_delete_people(_i, _j, _company) {
 	}
 }
 
-function outdoor_flame_add(_i, _j) {
+function outdoorFlameAdd(_i, _j) {
 	if($("#outdoor_flame_people_" + _i + "_" + _j + "").val() != " ") {
 		if(document.getElementById("outdoor_flame_people_" + _i + "_" + _j + "").style.backgroundColor == "rgb(239, 239, 239)") {
 			document.getElementById("outdoor_flame_people_" + _i + "_" + _j + "").style.backgroundColor = "lightgreen";
@@ -136,14 +136,32 @@ function outdoor_flame_add(_i, _j) {
 	
 }
 
-function cancel_outdoor_people() {
-	selected_company_num = undefined;
-	$("#make_outdoor_add").css({
-		"display" : "none"
-	});
+function selectPeopleByRoom(_i) {
+	for(let j = 0; j < 10; j++) {
+		if($("#outdoor_flame_people_" + _i + "_" + j + "").val() != " ") {
+			if(document.getElementById("outdoor_flame_people_" + _i + "_" + j + "").style.backgroundColor == "rgb(239, 239, 239)") {
+				document.getElementById("outdoor_flame_people_" + _i + "_" + j + "").style.backgroundColor = "lightgreen";
+			}
+			else if (document.getElementById("outdoor_flame_people_" + _i + "_" + j + "").style.backgroundColor = "lightgreen") {
+				document.getElementById("outdoor_flame_people_" + _i + "_" + j + "").style.backgroundColor = "rgb(239, 239, 239)";
+			}
+		}
+	}
 }
 
-function add_outdoor_people(_company) {
+function cancelOutdoorPeople(_company) {
+	selected_company_num = undefined;
+	for(let i = 0; i < _company.getNumDorm(); i++) {
+		for(let j = 0; j < 10; j++) {
+			if (document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor = "lightgreen") {
+				document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor = "rgb(239, 239, 239)";
+			}
+		}
+	}
+	$("#make_outdoor_add").hide();
+}
+
+function addOutdoorPeople(_company) {
 	let man;
 	let index = 0;
 	let arr = new Array();
@@ -152,7 +170,6 @@ function add_outdoor_people(_company) {
 			if(document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor == "lightgreen") {
 				arr[index] = $("#outdoor_flame_people_" + i + "_" + j + "").val();
 				index++;
-				alert("done!");
 			}
 		}
 	}
@@ -163,8 +180,57 @@ function add_outdoor_people(_company) {
 			printOutdoor(_company);	
 		}
 	}
+	for(let i = 0; i < _company.getNumDorm(); i++) {
+		for(let j = 0; j < 10; j++) {
+			if (document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor = "lightgreen") {
+				document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor = "rgb(239, 239, 239)";
+			}
+		}
+	}
+	$("#make_outdoor_add").hide();
 }
 
-function return_outdoor_people() {
-	
+function addAllOutdoorPeople(_company) {
+	let man;
+	let index = 0;
+	let arr = new Array();
+	for(let i = 0; i < _company.getNumDorm(); i++) {
+		for(let j = 0; j < 10; j++) {
+			if($("#outdoor_flame_people_" + i + "_" + j + "").val() != " ") {
+				document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor = "lightgreen";
+			}
+			if(document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor == "lightgreen") {
+				arr[index] = $("#outdoor_flame_people_" + i + "_" + j + "").val();
+				index++;
+			}
+		}
+	}
+	for(let i = 0; i < arr.length; i++) {
+		man = _company.findPersonByName(arr[i]);
+		if(man[0] != -1) {
+			man[0].setLoc($("#outdoor_name" + selected_outdoor + "").val());
+			printOutdoor(_company);	
+		}
+	}
+	for(let i = 0; i < _company.getNumDorm(); i++) {
+		for(let j = 0; j < 10; j++) {
+			if (document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor = "lightgreen") {
+				document.getElementById("outdoor_flame_people_" + i + "_" + j + "").style.backgroundColor = "rgb(239, 239, 239)";
+			}
+		}
+	}
+	$("#make_outdoor_add").hide();
+}
+
+function returnOutdoorPeople(_company) {
+	let arr = new Array();
+	arr = _company.findPersonByLocation($("#outdoor_name" + selected_outdoor + "").val());
+	for(let i = 0; i < arr.length; i++) {
+		if(arr[0] != -1) {
+			arr[i].setLoc("생활관");
+			printOutdoor(_company);	
+		}
+		else break;
+	}
+	$("#make_outdoor_add").hide();
 }

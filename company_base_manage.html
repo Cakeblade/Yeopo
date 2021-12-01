@@ -8,7 +8,7 @@
 		<link rel='stylesheet' href='css/style.css'>
 		<link rel='stylesheet' href='css/company.css'>
 		<script language='javascript' src='js/jquery-3.6.0.js'></script>
-		<script language='javascript' src='js/linuxclass.js'></script>
+		<script language='javascript' src='js/class.js'></script>
 		<script language='javascript' src='js/outdoor.js'></script>
 		<script language='javascript' src='js/fio.js'></script>
 		<script language='javascript' src='data/sig.js'></script>
@@ -60,12 +60,12 @@
 		<nav class='sidebar' style='z-index:3;width:300px;' id='mySidebar'><br>
   			<div class='barBlock'>
    				<a href='index.html' class='barItem button'> 현황판</a>
-				<a href='company1.html' class='barItem button'> XX중대</a>
-				<a href='company2.html' class='barItem button'> XX중대</a>
-   				<a href='company3.html' class='barItem button'> XX중대</a>
-				<a href='#' class='barItem button'> XX중대</a>
-				<a href='#' class='barItem button'> XX중대</a>
-				<a href='#' class='barItem button'> XX중대</a><br><br>
+				<a href='company_base.html' class='barItem button'> XX중대</a>
+				<a href='company_base.html' class='barItem button'> XX중대</a>
+   				<a href='company_base.html' class='barItem button'> XX중대</a>
+				<a href='company_base.html' class='barItem button'> XX중대</a>
+				<a href='company_base.html' class='barItem button'> XX중대</a>
+				<a href='company_base.html' class='barItem button'> XX중대</a><br><br>
   			</div>
 		</nav>
 
@@ -73,8 +73,6 @@
 		<!-- !PAGE CONTENT! -->
 		<div class='main' id='main' style='margin-left:300px;margin-top:68px;'>
 			<script>
-				function asdf() { alert("asdf");}
-				function asdff() { alert("asdff");}
 				var str;
 				var value = new Array();
 				// 중대원을 출력하는 부분
@@ -83,7 +81,7 @@
 				str += "<div id='companyName' style='font-size:30px;'>" + sig.getName() + "</div>";
                 str += "<div id='manageButton'>";
                 str += "<button id='manageCompany' onclick='";
-				str += 'location.href="./company3.html"';
+				str += 'location.href="./company_base.html"';
 				str += "'>중대원 현황</button>"
 				str += "</div>";
 				str += "</td>"

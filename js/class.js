@@ -35,7 +35,7 @@ class Person { // Node of linked list
 		this.val[2] = _Typ;
 	} // 용사 0, 간부 1
 	setLoc(_Loc) {
-		this.var[3] = _Loc;
+		this.val[3] = _Loc;
 	}
 	setNext(_level) {
 		this.next = _level;
@@ -91,7 +91,7 @@ class Company {
 		let cnt = 0;
 		while (this.dorm[room]) {
 			let curNode = this.getDorm(room);
-			while (curNode?.getNext() != null) {
+			while (curNode.getNext() != null) {
 				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				if (curNode.getTyp() == 0) cnt++;
 				curNode = curNode.getNext();
@@ -106,7 +106,7 @@ class Company {
 		let cnt = 0;
 		while (this.dorm[room]) {
 			let curNode = this.getDorm(room);
-			while (curNode?.getNext() != null) {
+			while (curNode.getNext() != null) {
 				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				if (curNode.getTyp() == 1) cnt++;
 				curNode = curNode.getNext();
@@ -122,6 +122,7 @@ class Company {
 	getNum() {
 		return this.num;
 	}
+
 
 	// setter
 	setNumDorm(_numDorm) {
@@ -210,7 +211,7 @@ class Company {
 		var arr = new Array();
 		let curNode = this.getDorm(cnt);
 		while (curNode.getNext()) {
-			while (curNode?.getNext() != null) {
+			while (curNode.getNext() != null) {
 				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				//document.writeln(curNode.getName());
 				arr[arrIndex] = curNode;
@@ -245,7 +246,7 @@ class Company {
 			let curNode = this.getDorm(cnt);
 			if(i % 2 == 0) {
 				while (curNode.getNext()) {
-					while (curNode?.getNext() != null) {
+					while (curNode.getNext() != null) {
 						arr[i][arrIndex] = curNode.getName();
 						arrIndex++;
 						curNode = curNode.getNext();
@@ -256,7 +257,7 @@ class Company {
 			}
 			else {
 				while (curNode.getNext()) {
-					while (curNode?.getNext() != null) {
+					while (curNode.getNext() != null) {
 						arr[i][arrIndex] = curNode.getLoc();
 						arrIndex++;
 						curNode = curNode.getNext();
@@ -275,9 +276,10 @@ class Company {
 		let cnt = 0;
 		let arrIndex = 0;
 		var arr = new Array();
+		arr[0] = -1; // initialize
 		while (this.dorm[cnt]) {
 			let curNode = this.getDorm(cnt);
-			while (curNode?.getNext() != null) {
+			while (curNode.getNext() != null) {
 				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				if (curNode.getName() == _name) {
 					//document.writeln(curNode.getName());
@@ -300,9 +302,10 @@ class Company {
 		let cnt = 0;
 		let arrIndex = 0;
 		var arr = new Array();
+		arr[0] = -1; // initialize
 		while (this.dorm[cnt]) {
 			let curNode = this.getDorm(cnt);
-			while (curNode?.getNext() != null) {
+			while (curNode.getNext() != null) {
 				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				if (curNode.getPos() == _pos) {
 					//document.writeln(curNode.getPos());
@@ -325,9 +328,10 @@ class Company {
 		let cnt = 0;
 		let arrIndex = 0;
 		var arr = new Array();
+		arr[0] = -1; // initialize
 		while (this.dorm[cnt]) {
 			let curNode = this.getDorm(cnt);
-			while (curNode?.getNext() != null) {
+			while (curNode.getNext() != null) {
 				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				if (curNode.getTyp() == _typ) {
 					//document.writeln(curNode.getName());
@@ -350,9 +354,10 @@ class Company {
 		let cnt = 0;
 		let arrIndex = 0;
 		var arr = new Array();
+		arr[0] = -1; // initialize
 		while (this.dorm[cnt]) {
 			let curNode = this.getDorm(cnt);
-			while (curNode?.getNext() != null) {
+			while (curNode.getNext() != null) {
 				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				if (curNode.getLoc() == _Loc) {
 					//document.writeln(curNode.getName());
@@ -376,7 +381,7 @@ class Company {
 		let cnt = 0;
 		while (this.dorm[room]) {
 			let curNode = this.getDorm(room);
-			while (curNode?.getNext() != null) {
+			while (curNode.getNext() != null) {
 				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				if (curNode.getLoc() != '생활관') cnt++;
 				curNode = curNode.getNext();
