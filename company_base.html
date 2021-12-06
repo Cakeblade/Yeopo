@@ -291,8 +291,35 @@ sig.insertLast(p18, 2);\
 sig.insertLast(p11, 3);\
 sig.insertLast(p12, 3);\
 sig.insertLast(p13, 3);"';
+				
+				function saveToFile_Chrome(fileName, content) {
+					var blob = new Blob([content], { type: 'text/plain' });
+					objURL = window.URL.createObjectURL(blob);
 
-				writeFile(asdf);
+					// 이전에 생성된 메모리 해제
+					if (window.__Xr_objURL_forCreatingFile__) {
+						window.URL.revokeObjectURL(window.__Xr_objURL_forCreatingFile__);
+					}
+					window.__Xr_objURL_forCreatingFile__ = objURL;
+					var a = document.createElement('a');
+					a.download = fileName;
+					a.href = objURL;
+					a.click();
+				}
+
+				function download(filename, text) {
+					var element = document.createElement('a');
+					element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+					element.setAttribute('download', filename);
+
+					element.style.display = 'none';
+					document.body.appendChild(element);
+
+					element.click();
+
+					document.body.removeChild(element);
+				}
+				
 				saveToFile_Chrome("sig.js", asdf);
 				download("sig.js", asdf);
 
