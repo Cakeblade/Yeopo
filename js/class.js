@@ -204,8 +204,34 @@ class Company {
 		return null;
 	}
 
-	removeAt() {} // 나중에 필요할 때 만들기 - file i/o 까지 다 구현하고 html단에서의 중대원 추가/삭제 구현시 만질 듯
-
+	removeAtByName(_name) {
+		let cnt = 0;
+		let index = 0;
+		while (this.dorm[cnt]) {
+			let curNode = this.getDorm(cnt);
+			let previous = this.getDorm(cnt);
+			index = 0;
+			while (curNode.getNext() != null) {
+				if (curNode.getName() == _name) {
+					if(index == 0) this.Dorm[cnt] = curNode.getNext());
+					else {
+						while(curNode.getNext() != null) {
+							previous = curNode;
+							curNode = curNode.next();
+						}
+					}
+				}
+				index++;
+				previous = curNode;
+				curNode = curNode.getNext();
+			}
+			if (curNode.getName() == _name) {
+				//document.writeln(curNode.getName());
+			}
+			cnt++;
+		}
+	}
+	
 	returnList(cnt) { // 생활관의 인원(Person)을 return함
 		let arrIndex = 0;
 		var arr = new Array();
@@ -390,5 +416,13 @@ class Company {
 			room++;
 		}
 		return cnt;
+	}
+	
+	companyTranfer() {
+		alert("Asdf");
+	}
+	
+	companyExport() {
+		alert("aasdf");
 	}
 }

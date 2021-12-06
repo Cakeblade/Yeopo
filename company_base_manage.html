@@ -11,6 +11,7 @@
 		<script language='javascript' src='js/class.js'></script>
 		<script language='javascript' src='js/outdoor.js'></script>
 		<script language='javascript' src='js/fio.js'></script>
+		<script language='javascript' src='data/com.js'></script>
 		<script language='javascript' src='data/sig.js'></script>
 		<script>
 			function onPrint() 
@@ -73,36 +74,37 @@
 		<!-- !PAGE CONTENT! -->
 		<div class='main' id='main' style='margin-left:300px;margin-top:68px;'>
 			<script>
+				var com = sig;
 				var str;
 				var value = new Array();
 				// 중대원을 출력하는 부분
-				str = "<div id='company_" + sig.getCName() + "'>";
+				str = "<div id='company_" + com.getCName() + "'>";
 				str += "<table class='singleCompany'><tr><td rowspan='2'>";
-				str += "<div id='companyName' style='font-size:30px;'>" + sig.getName() + "</div>";
+				str += "<div id='companyName' style='font-size:30px;'>" + com.getName() + "</div>";
                 str += "<div id='manageButton'>";
                 str += "<button id='manageCompany' onclick='";
 				str += 'location.href="./company_base.html"';
 				str += "'>중대원 현황</button>"
 				str += "</div>";
 				str += "</td>"
-				for(let i = 0; i < sig.getNumDorm(); i++)
+				for(let i = 0; i < com.getNumDorm(); i++)
 				{
 					if(i == 0) str += "<td class='roomname'>행정반</td>";
 					else str += "<td class='roomname'>" + i + "생활관</td>";
 				}
 				str += "</tr>";
 				str += "<tr>";
-				for(let i = 0; i < sig.getNumDorm(); i++)
+				for(let i = 0; i < com.getNumDorm(); i++)
 				{
 					let output;
-					value = sig.returnList(i);
+					value = com.returnList(i);
 					str += "<td>";
 					for(let j = 0; j < 11; j++)
 					{
 						if(value[j]) output = value[j].getName();
 						else output = " ";
 						str += "<div = 'button'>";
-						str += "<input type='button' readonly id='company_" + "sig" + "_" + i + "_" + j + "' class='company_people_sig' value='" + output + "'>";
+						str += "<input type='button' readonly id='company_" + com.getCName() + "_" + i + "_" + j + "' class='company_people_" + com.getCName() +"' value='" + output + "'>";
 						str += "</div>";
 					}
 					str += "</td>";
@@ -111,11 +113,11 @@
 						<div>\
 							<table class='outsider'>\
 								<tr><td>총원</td></tr>\
-								<tr><td>" + sig.getWarrior() + "</td></tr>\
+								<tr><td>" + com.getWarrior() + "</td></tr>\
 								<tr><td>열외</td></tr>\
-								<tr><td>" + sig.getOutdoorsMans() + "</td></tr>\
+								<tr><td>" + com.getOutdoorsMans() + "</td></tr>\
 								<tr><td>현재원</td></tr>\
-								<tr><td>" + sig.getRemainPerson() + "</td></tr>\
+								<tr><td>" + com.getRemainPerson() + "</td></tr>\
 							</table>\
 						</div>";
 				document.getElementById('main').innerHTML = str;
@@ -129,7 +131,7 @@
                 document.write("<tr>");
                 document.write("<td>이름</td>");
                 document.write("<td><input type='text' id='manage_in_name'></td>");
-                document.write("<td rowspan='2'><button id='submit'>수정</button>")
+                document.write("<td rowspan='2'><button id='submit' onclick='" + com.getCName() + ".companyTranfer()'>수정</button>")
                 document.write("</tr>");
                 document.write("<tr>");
                 document.write("<td>생활관</td>");
@@ -142,7 +144,7 @@
                 document.write("<tr>");
                 document.write("<td>이름</td>");
                 document.write("<td><input type='text' id='manage_in_name'></td>");
-                document.write("<td><button id='submit'>수정</button></td>")
+                document.write("<td><button id='submit' onclick='" + com.getCName() + ".companyExport()'>수정</button></td>")
                 document.write("</tr></table>");
                 document.write("</div>");
 			</script>
