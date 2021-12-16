@@ -50,7 +50,8 @@ class Company {
 		if (_mans.getTyp() == 0) {
 			this.Warrior = 1; // 용사들의 수
 			this.Officer = 0; // 간부들의 수
-		} else {
+		} 
+		else {
 			this.Warrior = 0; // 용사들의 수
 			this.Officer = 1; // 간부들의 수
 		}
@@ -203,30 +204,70 @@ class Company {
 		}
 		return null;
 	}
-
-	removeAtByName(_name) {
+	
+	removePersonByName(_name, _pos) {
 		let cnt = 0;
 		let index = 0;
-		while (this.dorm[cnt]) {
-			let curNode = this.getDorm(cnt);
-			let previous = this.getDorm(cnt);
-			index = 0;
+		while (this.dorm[_pos]) {
+			let curNode = this.getDorm(_pos);
+			let previous = this.getDorm(_pos);
 			while (curNode.getNext() != null) {
+				// ? 안붙이면 오류난다. ㅁㄴㅇㄹ
 				if (curNode.getName() == _name) {
-					if(index == 0) this.Dorm[cnt] = curNode.getNext());
-					else {
-						while(curNode.getNext() != null) {
-							previous = curNode;
-							curNode = curNode.next();
+					if (index == 0) {
+						if (curNode.getTyp() == 0) {
+							this.setWarrior(this.getWarrior() - 1);
+							this.setNumDorm(this.getNumDorm() - 1);
+						} 
+						else {
+							this.setOfficer(this.getOfficer() - 1);
 						}
+						this.dorm[_pos] = curNode.getNext();
+					}
+					else {
+						if (curNode.getTyp() == 0) {
+							this.setWarrior(this.getWarrior() - 1);
+							this.setNumDorm(this.getNumDorm() - 1);
+						} 
+						else {
+							this.setOfficer(this.getOfficer() - 1);
+						}
+						while (curNode.getNext() != null) {
+							previous = curNode;
+							curNode = curNode.getNext();
+						}
+						previous.setNext(curNode.getNext());
 					}
 				}
-				index++;
-				previous = curNode;
 				curNode = curNode.getNext();
+				break;
 			}
 			if (curNode.getName() == _name) {
-				//document.writeln(curNode.getName());
+				if (index == 0) {
+					if (curNode.getTyp() == 0) {
+							this.setWarrior(this.getWarrior() - 1);
+							this.setNumDorm(this.getNumDorm() - 1);
+						} 
+						else {
+							this.setOfficer(this.getOfficer() - 1);
+						}
+					this.dorm[_pos] = curNode.getNext();
+				}
+				else {
+					if (curNode.getTyp() == 0) {
+						this.setWarrior(this.getWarrior() - 1);
+						this.setNumDorm(this.getNumDorm() - 1);
+					} 
+					else {
+						this.setOfficer(this.getOfficer() - 1);
+					}
+					while (curNode.getNext() != null) {
+						previous = curNode;
+						curNode = curNode.getNext();
+					}
+					previous.setNext(curNode.getNext());
+				}
+				break;
 			}
 			cnt++;
 		}

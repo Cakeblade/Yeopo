@@ -78,7 +78,8 @@
 				var str;
 				var value = new Array();
 				var com = sig;
-
+				
+				sig.removePersonByName("전은하", 2);
 				// 중대원을 출력하는 부분
 				str = "<div id='company'>";
 				str += "<table class='singleCompany'><tr><td rowspan='2'>";
@@ -242,7 +243,7 @@
 						}
 					});
 				});
-
+/*
 				document.write("<div>");
 				$.get("./data/sig.js", function(data) {
 
@@ -255,7 +256,7 @@
 					})
 
 				})
-				document.write("</div>");
+				document.write("</div>");*/
 			</script>
 		</div>
 		<button class='print' onclick='onPrint()'> 인쇄하기 </button>
